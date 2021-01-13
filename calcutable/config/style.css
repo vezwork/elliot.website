@@ -1,0 +1,393 @@
+body {
+	margin: 0px;
+	font-family: 'Roboto', sans-serif;
+	background-color: #F3F3F3;
+	color: rgba(0, 0, 0, 0.8);
+}
+
+nav-header {
+	font-family: arial, sans-serif; 
+	width: 150px;
+	font-weight:600;
+	font-size:26px;
+	background-color:#111;
+	padding: 10px 10px 8px 14px;
+	margin: 10px;
+	color:#FFF;
+	display: inline-block;
+}
+nav-header a:hover {
+    color: #FFF;
+	text-decoration: none;
+}
+
+nav-header a:link {
+    color: #FFF;
+	text-decoration: none;
+}
+
+nav-header a:visited {
+    color: #FFF;
+	text-decoration: none;
+}
+
+nav-header a:active {
+    color: #FFF;
+	text-decoration: none;
+}
+
+.top-bar {
+	width: %100;
+	background-color: #4CAF50;
+	color: #FFF;
+	padding: 10px;
+	font-size: 24px;
+	font-family: monospace;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+	height: 64px;
+}
+
+.left-panel {
+	width: 100%;
+	margin: 0px;
+	float:left;
+	background-color: transparent;
+	position: relative;
+}
+
+.calander {
+	display: none;
+	width: 70%;
+	height: 590px;
+	margin: 20px 15% 20px 15%;
+	float: left;
+	background-color: #EEE;
+	position:relative;
+	box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.22), 0 3px 3px 0 rgba(0, 0, 0, 0.36);
+	overflow: hidden;
+	border-radius: 2px 2px 2px 2px;
+}
+
+.right-panel {
+	float: left;
+	width: 100%;
+	height: 540px;
+	background-color: #EEE;
+	position:relative;
+	overflow: hidden;
+}
+
+.time-options {
+	float: left;
+	width: 100%;
+	height: 50px;
+	background-color: #4CAF50;
+	overflow: hidden;
+	box-shadow: 0 -1px 0px #E3E3E3 inset;
+}
+
+.time-options  .option {
+	float: left;
+	color: #FFF;	
+	height: 49px;
+	line-height: 50px;
+	width: 100px;
+	text-align: center;
+	-webkit-transition: 0.3s linear;
+	transition: 0.3s linear;
+}
+
+.time-options  .option:hover{
+	cursor: pointer;
+	box-shadow: 0 -3px 0px #FFF inset;
+}
+
+.right-panel  .timeSlot{
+	position: absolute;
+	width: 12.5%;
+	background-color: rgba(255, 255, 255, 0.7);
+	//box-shadow: 0 1px 3px 0 #707070, 0 1px 1px 0 #adadad;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 1px 0 rgba(0, 0, 0, 0.38);
+	text-align: center;
+	overflow: hidden;
+	color: rgba(0, 0, 0, 0.9);
+	transition: 0.3s ease-in-out;
+	cursor:pointer;
+}
+
+.right-panel  .timeSlot:hover{
+	//box-shadow: 0 10px 25px 0 #7f7f7f, 0 15px 15px 0 #999;
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.1), 0 15px 15px 0 rgba(0, 0, 0, 0.26);
+	background-color: #FFF;
+	z-index: 2;
+}
+
+.right-panel  .day-title{
+	float: right;
+	display:inline-block;
+	z-index: 2;
+	position:relative;
+	width: 12.5%;
+	background-color: transparent;
+	text-align: center;
+	overflow: hidden;
+	color: rgba(0, 0, 0, 0.8);
+}
+
+.right-panel  .timeSlot div{
+	margin: 3px;
+}
+
+.right-panel  .hourRow {
+	position: absolute;
+	width: 100%;
+	color: rgba(0, 0, 0, 0.5);
+	background-color: #E9E9E9;
+	display: flex;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.right-panel  .hourRow:nth-of-type(odd) {
+    background: #D6D6D6;
+}
+
+.inputs {
+    position: relative;
+    padding: 10px 2.5% 75px 2.5%;
+    width: 15%;
+    overflow:hidden;
+    float: left;
+    animation-name: expand;
+    animation-duration: 0.5s;
+}
+
+@keyframes expand {
+    from {transform: scale(0.6,0.6);}
+    to {transform: scale(1,1);}
+}
+
+.inputs .inner {
+    animation-name: expand;
+    animation-duration: 0.5s;
+}
+
+.inputs .time-input{
+	width: 70px;
+	margin-top: 15px;
+	display: inline-block;
+	float:left;
+}
+
+.inputs .days {
+	width: 100%;
+	font-size: 14px;
+}
+
+.inputs .days input{
+}
+
+.inputs .class-name-input{
+	width: 150px;
+	margin-right: 5px;
+	float:left;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.error {
+	bottom: -60px;
+	line-height: 17px;
+	width: 75%;
+	position: fixed;
+	left: 50%;
+	margin-left: -37.5%;
+	z-index: 3;
+	transition: 0.2s ease-in-out;
+}
+
+.error::after {
+	content:"x";
+	float: right;
+}
+days div {
+	clear:both;
+}
+
+input {
+	border: none;
+	width: 100%;
+	color: rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+	padding: 5px;
+	margin: 5px;
+	background-color: transparent;
+	-webkit-transition: 0.2s ease-out;
+	transition: 0.2s ease-out;
+	font-family: 'Roboto', sans-serif;
+}
+
+input:focus {
+	outline: none;
+    box-shadow: 0px -1px 0px rgba(0, 200, 83, 0.7) inset;
+	border-bottom: 1px solid rgba(0, 200, 83, 0.7);
+}
+
+button{
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.44), 0 1px 1px 0 rgba(0, 0, 0, 0.68);
+	text-align: center;
+	overflow: hidden;
+	background-color: #4CAF50;
+	-webkit-transition: 0.2s ease-out;
+	transition: 0.2s ease-out;
+	cursor:pointer;
+	border: none;
+	padding: 7px 20px 7px 20px;
+	border-radius: 2px;
+	z-index: 2;
+	float: left;
+	margin: 5px;
+	color: #FFF;
+	font-family: 'Roboto', sans-serif;
+}
+
+button:hover {
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.3), 0 15px 15px 0 rgba(0, 0, 0, 0.4);
+	color: rgba(0, 0, 0, 0.7);
+	background-color: #FFF;
+}
+
+button:active {
+	-webkit-transition: 0.05s ease-out;
+	transition: 0.05s ease-out;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.44), 0 1px 1px 0 rgba(0, 0, 0, 0.68);
+}
+
+button:focus {
+	outline: none;
+}
+
+input::-webkit-input-placeholder {
+   color: rgba(0, 200, 83, 0.7);
+   font-family: 'Roboto', sans-serif;
+   position: relative;
+}
+
+input:focus::-webkit-input-placeholder {
+   //color: rgba(0, 200, 83, 0.0);
+   font-family: 'Roboto', sans-serif;
+   top: -15px;
+   font-size: 10px;
+   -webkit-transition: 0.2s ease-out;
+	transition: 0.2s ease-out;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+   color: rgba(0, 200, 83, 0.7);
+   font-family: 'Roboto', sans-serif;
+}
+
+input::-moz-placeholder {  /* Firefox 19+ */
+   color: rgba(0, 200, 83, 0.7);
+   font-family: 'Roboto', sans-serif;
+}
+
+input:-ms-input-placeholder {  
+   color: rgba(0, 200, 83, 0.7);
+   font-family: 'Roboto', sans-serif;
+}
+
+input[type="checkbox"] {
+    display:none;
+}
+
+label text{
+	display: inline-block;
+	position:relative;
+	height: 28px;
+	line-height: 28px;
+	width: 35px;
+	overflow: hidden;
+	text-align:center;
+	float: left;
+	-webkit-transition: 0.2s ease-out;
+	transition: 0.2s ease-out;
+}
+
+label text:hover {
+	background-color: rgba(255, 255, 255, 0.5);  
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.3), 0 10px 12px 0 rgba(0, 0, 0, 0.4);
+	cursor: pointer;
+	z-index: 2;
+}
+
+input[type="checkbox"]:checked + text {
+  font-weight: bold;
+  color: #FFF;
+  background-color: rgba(0, 200, 83, 0.7);  
+}
+
+@media screen and (max-width: 820px) {
+	nav-header {
+		width: auto;
+		font-weight:600;
+		font-size:16px;
+		padding: 8px 8px 8px 8px;
+	}
+	
+	.top-bar {
+		height: 54px;
+		font-size: 14px;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+	.inputs {
+		margin: 10px 8% 35px 4%;
+		width: 86%;
+		float: left;
+	}
+	
+	.inputs .time-input{
+		width: 45%;
+		margin: 2px;
+		float:left;
+	}
+	
+	.inputs .class-name-input{
+		width: 90%;
+		float:left;
+	}
+	
+	.calander {
+		width: 100%;
+		height: 100%;
+		margin-left: 0px;
+		margin-right: 0px;
+		margin-bottom: 0px;
+	}
+	
+	.calander .option {
+		width: 70px;
+		font-size: 14px;
+	}
+	
+	.calander .time-options {
+		height: 50px;
+	}
+	
+	.calander .right-panel {
+		height: 430px;
+	}
+	
+	.calander .right-panel  .day-title, .right-panel .hourRow {
+		font-size: 8px;
+	}
+	.calander .right-panel .timeSlot {
+		font-size: 8px !important;
+	}
+}

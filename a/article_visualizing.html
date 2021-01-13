@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <title>α.elliot | Visualizing Process with ES6 Generators</title>
+
+        <link rel="stylesheet" href="./article_files/css.css">
+        <link rel="stylesheet" href="./article_files/prism.css">
+        <link href='https://fonts.googleapis.com/css?family=Montserrat|Inconsolata|Material+Icons' rel='stylesheet' type='text/css'>
+        <link href="./article_files/css" rel="stylesheet" type="text/css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body cz-shortcut-listen="true">
+        <article>
+            <header>
+                <left>
+                    <a href="http://elliot.website/a">α.elliot</a>
+                    <!--<i>Dec 15<sup>th</sup></i>-->
+                </left>
+                <right>
+                    <icon class="material-icons" onclick="expand();">share</icon>
+                    <share>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http://elliot.website/%2Fa%2F%3FMaking%2520the%2520World%2520From%2520Scratch&amp;display=popup&amp;ref=plugin&amp;src=share_button%27data-dnt=%27true" target="_blank" style="background:#3b5998; color: #f7f7f7;">+fcbk</a>
+
+                        <a href="https://twitter.com/share" data-dnt="true" target="_blank" style="background:#00aced; color: white;">+twtr</a>
+                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+                        <a href="https://www.reddit.com/submit?url=http://elliot.website%2Fa%2F%3FMaking%2520the%2520World%2520From%2520Scratch" target="_blank" style="background:OrangeRed; color: white;">+rddt</a>
+
+                        <a href="mailto:someone@example.com?Subject=http%3A%2F%2Felliot.website%2Fa+%7C+Making+the+World+From+Scratch&amp;Body=check+out+Making+the+World+From+Scratchhttp%3A%2F%2Felliot.website%2Fa%2F%3FMaking%2520the%2520World%2520From%2520Scratch" target="_blank" style="background: SlateGrey; color: white;">+emal</a> 
+                    </share>
+                    <totop><icon class="material-icons" onclick="window.scrollTo(0,0);" style="float:right;">vertical_align_top</icon></totop>
+                </right>
+                <pad></pad>
+                <h1>Visualizing Process with ES6 Generators</h1>
+            </header>
+            <img style="margin: -20px 0 0; width: 100%; position: relative; z-index: -10;" src="./Visualizing Assets/function_process.png" alt="function process illustration">
+            <p style="line-height: 21px;">
+                Countless hours are poured into designing functions that run in the fraction of a second. When functions execute so quickly, their ingenious implementations are not easily appreciated. Let’s slow them down, and take the necessary time to watch them work.
+            </p>
+            <p>
+                In this article, I use generators to visualize a function’s process and show how using process as a creative tool can have striking results.
+            </p>
+            
+            <h2>What's a Generator Function?</h2>
+            <p>
+                    Generator functions are new to JavaScript, and many people have been struggling to find real-world practical uses for them. I’m excited to show you a cool way to use them, but let’s go over the basics first. Here’s a simple Generator function:
+                <code><b>function</b> * myGeneratorFunction(arg) {
+                    <b>yield</b> 1;
+                    <b>yield</b> arg;
+            }</code>
+                It looks a lot like a normal function except for two differences: an asterisk (*) after <b>function</b>, and the use of the <b>yield</b> statement.
+            </p>
+            <p>
+                Below is how myGeneratorFunction is used:
+                <code><b>const</b> generator = myGeneratorFunction(<i>'hello world'</i>);
+            
+            console.log(generator.next().value)
+            <i>// logs out 1</i>
+            
+            console.log(generator.next().value)
+            <i>// logs out 'hello world'</i></code>
+            </p>
+            <p>
+                Calling a Generator Function does not execute it right away, instead it returns a Generator object. Calling <b>.next()</b> on the Generator object causes myGeneratorFunction to execute up to the first yield statement, returning the value appearing after the yield keyword.
+                Generators allow us to stop and start the execution of a function.
+                Check out the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*">the MDN page on Generators</a> for more information.
+            </p>
+            
+            <h2>Why?</h2>
+            <p>
+                Visualizing a function’s process helps when trying to understand the implementation, and can result in fascinating animations and impressive effects. Take this video visualizing various sorting algorithms for example:
+                <div style="position: relative; width: 100%; height: 0; margin: 44px 0; padding-bottom: 56.25%;">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/kPRA0W1kECg?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen 
+                        style="position: absolute; top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;">
+                    </iframe>
+                </div>
+                This video illustrates why process visualization is awesome:
+                <uL>
+                    <li>Watching the process of sorting is strangely captivating.</li>
+                    <li>The differences in how each sorting algorithm works are instantly obvious.</li>
+                    <li>What better way to interest someone in how something works, than to make how it works look cool?</li>
+                </ul> 
+            <p>
+            
+            <h2>Let’s Visualize!</h2>
+            <p>
+                Computers nowadays run ridiculously, faster-than-Usain-Bolt, mind-bogglingly fast. That means that functions run just as fast. To slow down the process of a function we will use a Generator. With a Generator we slow down the process so that it operates at 60 steps per second. At this speed we can watch a function do what it does best, in real time as it does it. It will be like watching the world’s fastest sprinter in slow motion, seeing individual muscles contract and relax in a single step.
+            </p>
+            <p>
+                For our example we shamelessly copy the youtube video above and visualize the <b>insertion sort</b> algorithm with a bar graph.
+            </p>
+            <p>
+                This is the insertion sort implementation:
+            <code><b>function</b> insertionSort(inputArray) {
+                <b>for</b> (let i = 0; i < inputArray.length; i++) {
+                    <b>const</b> value = inputArray[i];
+            
+                    <b>let</b> j = i - 1;
+                    <b>while</b> (j >= 0 && value < inputArray[j]) {
+                        inputArray[j+1] = inputArray[j];
+                        j -= 1;
+                    }
+                    inputArray[j+1] = value
+                }
+                <b>return</b> inputArray;
+            }</code>
+            </p>
+            <p>
+                Below we have a function that draws an array as a bar graph on a canvas. I use the <a href="https://developer.mozilla.org/kab/docs/Web/API/Canvas_API">2d Canvas API</a>:
+            <code><b>const</b> c = document.getElementById(<i>'canvasEl'</i>);
+            <b>const</b> ctx = c.getContext(<i>'2d'</i>);
+            
+            <b>function</b> drawGraphFromArray(array) {
+                ctx.clearRect(0,0,c.width,c.height);
+                <b>const</b> barWidth = c.width / array.length;
+                <b>const</b> barHeightScale = c.height / Math.max(...array);
+            
+                array.forEach((value, i) => ctx.fillRect(
+                    i * barWidth,
+                    0,
+                    barWidth,
+                    barHeightScale * value
+                ));
+            }</code>
+                <span class="caption">draws a bar graph where x axis: index in the array, y axis: value at index</span>
+            </p>
+            <p>
+                Now back to our regular programming. In order to slow down our insertion sort function we are going to rewrite it as a Generator function. Sounds tricky, right? It’s actually the opposite of tricky, it’s SUPER EASY. This is the rewritten insertion sort:
+            <code><b>function</b> <ins>*</ins> insertionSort(inputArray) {
+                <b>for</b> (let i = 0; i < inputArray.length; i++) {
+                    <b>const</b> value = inputArray[i];
+            
+                    <b>let</b> j = i - 1;
+                    <b>while</b> (j >= 0 && value < inputArray[j]) {
+                        inputArray[j+1] = inputArray[j];
+                        j -= 1;
+                        <ins>yield inputArray;</ins>
+                    }
+                    inputArray[j+1] = value
+                }
+                <b>return</b> inputArray;
+            }</code>
+                There are only two changes. We add an asterisk after the function keyword and add a yield statement whenever we want to draw a frame in the animation, yielding the array being sorted. With those simple changes, we’ve converted a function into a Generator function that is executed one step at a time, and yields the data we need to visualize its process. This rewrite is great because it’s unintrusive - there’s almost no chance the conversion will affect the logic of the function.
+            </p>
+            <p>
+                Let’s put <b>drawGraphFromArray</b> and our new <b>insertionSort</b> Generator function together in a  <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame">requestAnimationFrame</a> render loop, resulting in our finished animation:
+            
+            <code><i>// code from above ...</i>
+            
+            <b>const</b> randomArr = Array(50).fill(0).map(Math.random);
+            <b>const</b> sortGenerator = insertionSort(randomArr);
+            
+            <b>function</b> renderLoop() {
+                <b>const</b> yieldedArray = sortGenerator.next().value;
+                
+                drawGraphFromArray(yieldedArr);
+                
+                requestAnimationFrame(renderLoop);
+            }
+            renderLoop();</code>
+            
+                <canvas id="canvasEl" width="700" height="300" style="width: 100%;"></canvas>
+                <span class="caption">Our beautiful finished animation</span>
+            </p>
+            <p>
+                In the final animation above, we see the bar graph go from a jagged mess to a beautiful staircase. To achieve this, we ask our insertion sort to operate at one step per render loop with <b>.next()</b>. requestAnimationFrame makes sure our render loop runs at 60 frames per second, the perfect speed for a smooth animation.
+            </p>
+            <p>
+                Insertion sort is a simple example of what we can do. Let’s see if we can’t get a bit more crazy with Generators.
+            </p>
+            
+            <h2>
+                Process Solves Problems and is Creatively Cool
+            </h2>
+            <p>
+                Seeing the series of steps taken toward a final result can add something special to a piece of work. When creating something, I think about the parts of the process that would be interesting to someone looking at the final product, and I show those parts off. Below are two interactive canvases that show off the process of rendering in order to make the user feel good.
+            </p>
+            <p>
+                I made a program a while ago that allows a user to explore into <a href="https://en.wikipedia.org/wiki/Mandelbrot_set">the Mandelbrot set</a>. 
+                The problem with the program is that it takes at least a full second to render. As a result, user input feels jerky and unresponsive. To solve this problem, I modified the program to render at a low resolution (which renders way faster) while the user is interacting. As the user refrains from interacting the program takes the opportunity to render at progressively higher and higher resolutions.
+            </p>
+            <p>
+                A Generator is used to help with progressively rendering at increasing resolutions. The Generator yields squares, starting with 4 consecutively yielded large squares covering the area of the image. Followed by 8 smaller squares covering the area, then 16 even smaller squares, then 32, and so on. The program takes these squares and fills them in with color. I limit the program to filling in 700 squares with color per frame. This way rendering takes less than 1/60th of a second, resulting in user input that feels responsive and fluid.
+                As an added benefit, the Mandelbrot set being rendered at increasing resolutions is a cool effect.
+            </p>
+            <p>
+                <canvas id="c-mandelbrot" width="700" height="700" style="background: #00A8C5; width: 100%;"></canvas>
+                <span class="caption">click where you want to zoom into. <a href="./Visualizing Assets/mandelbrot.js">source</a></span>
+            </p>
+            <p>
+                Here’s another example that uses a similar idea. With an image instead of the Mandelbrot set, and triangles instead of squares:
+            </p>
+            <p>
+                <canvas id="c-triangle" width="700" height="400" style="width: 100%;"></canvas>
+                <span class="caption">mouse over to see the action. <a href="./Visualizing Assets/triangle.js">source</a></span>
+            </p>
+            
+            <p>
+                Rendering an image is easily possible at 60fps, so there was no need for the fancy triangle animation. Exaggerate the process of rendering just because it looks awesome.
+            </p>
+            
+            
+            <h2>The End of the Process</h2>
+            <p>
+                Process is going on all the time, but it happens so fast that it can be hard to work with. Generators make process malleable, giving you access to something that’s always around, but rarely seen. Hopefully I’ve got you thinking about process and Generators in a new way. Thanks for reading.
+            </p>
+            <p>
+                If you are still interested in Generators, check out this other article:
+                <a href="http://raganwald.com/2016/05/07/javascript-generators-for-people-who-dont-give-a-shit-about-getting-stuff-done.html">
+                    JavaScript Generators for People Who Don't Give a Shit About GettingStuffDone™
+                </a>
+            </p>
+            
+            <center><a href="https://docs.google.com/forms/d/e/1FAIpQLScoAmtBgnWmKgXppRKdKaTbdMZC7nwh8kCgAYcbDe3l4l20-Q/viewform?usp=sf_link">Subscribe to emails</a></center>
+            
+            <style>
+                article b {
+                    background-color: #3D00E1;
+                }
+            
+                code b {
+                    background-color:transparent;
+                }
+            
+                code ins {
+                    background: #3D00E1;
+                }
+            
+                code i {
+                    color: #FFF793;
+                }
+            </style>
+            <script src="./Visualizing Assets/graph.js"></script>
+            
+            <script src="https://rawgit.com/infusion/Complex.js/master/complex.min.js"></script>
+            <script src="./Visualizing Assets/mandelbrot.js"></script>
+            
+            <script src="./Visualizing Assets/triangle.js"></script>
+        </article>
+        <footer>
+            <footer-holder>
+                <left>
+                    <a href="http://elliot.website/a"><b>α.elliot</b></a>
+                    © 2021 <a href="http://elliot.website/">Elliot Evans</a>
+                </left>
+                <right>
+                    <!--<a href="α.elliot/about">About</a> ·
+                    <a href="α.elliot/contact">Contact</a> · -->
+                    <a href="http://elliot.website/">home</a> ·
+                    <a href="https://github.com/elliotwork">github</a>
+                </right>
+            </footer-holder>
+        </footer>
+        <script src="./article_files/js.js"></script>
+    </body>
+</html>

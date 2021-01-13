@@ -1,0 +1,44 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+	<meta charset="UTF-8" />
+    <meta name='viewport' content='width=device-width, initial-scale=0.5, user-scalable=no' />
+	<title>Subito! Torpedo</title>
+	<script type="text/javascript" src="js/phaser.min.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div style="display: block; width: 1200px; max-width: 100%; margin: 0 auto; position: absolute; left: 0; right: 0;">
+    <div id="game" style="display: block; height:0; width:100%; padding-bottom: 60%;">
+</div>
+</div>
+<script type="text/javascript">
+    
+var parent = document.getElementById('game');
+    
+var game = new Phaser.Game(parent.offsetWidth, parent.offsetHeight, Phaser.CANVAS, parent, null, false, false);
+    
+var Main = function(){};
+
+Main.prototype = {
+    preload: function() {
+        game.load.script("states/Splash");
+        game.load.bitmapFont('8bitwonder', 'assets/fonts/font.png', 'assets/fonts/font.xml');
+    },
+    
+    create: function() {
+        game.stage.backgroundColor = 0x358ee1;
+        game.state.add('Splash', Splash);
+        game.state.start('Splash');
+    }
+};
+
+game.state.add('Main', Main);
+game.state.start('Main');
+</script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <title>α.elliot | Making the World From Scratch</title>
+
+        <link rel="stylesheet" href="./article_files/css.css">
+        <link rel="stylesheet" href="./article_files/prism.css">
+        <link href='https://fonts.googleapis.com/css?family=Montserrat|Inconsolata|Material+Icons' rel='stylesheet' type='text/css'>
+        <link href="./article_files/css" rel="stylesheet" type="text/css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body cz-shortcut-listen="true">
+        <article>
+            <header>
+                <left>
+                    <a href="http://elliot.website/a">α.elliot</a>
+                    <!--<i>Dec 15<sup>th</sup></i>-->
+                </left>
+                <right>
+                    <icon class="material-icons" onclick="expand();">share</icon>
+                    <share>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http://elliot.website/%2Fa%2F%3FMaking%2520the%2520World%2520From%2520Scratch&amp;display=popup&amp;ref=plugin&amp;src=share_button%27data-dnt=%27true" target="_blank" style="background:#3b5998; color: #f7f7f7;">+fcbk</a>
+
+                        <a href="https://twitter.com/share" data-dnt="true" target="_blank" style="background:#00aced; color: white;">+twtr</a>
+                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+                        <a href="https://www.reddit.com/submit?url=http://elliot.website%2Fa%2F%3FMaking%2520the%2520World%2520From%2520Scratch" target="_blank" style="background:OrangeRed; color: white;">+rddt</a>
+
+                        <a href="mailto:someone@example.com?Subject=http%3A%2F%2Felliot.website%2Fa+%7C+Making+the+World+From+Scratch&amp;Body=check+out+Making+the+World+From+Scratchhttp%3A%2F%2Felliot.website%2Fa%2F%3FMaking%2520the%2520World%2520From%2520Scratch" target="_blank" style="background: SlateGrey; color: white;">+emal</a> 
+                    </share>
+                    <totop><icon class="material-icons" onclick="window.scrollTo(0,0);" style="float:right;">vertical_align_top</icon></totop>
+                </right>
+                <pad></pad>
+                <h1>Making the World From Scratch</h1>
+            </header>
+            <style>
+    img {
+        display: none;
+    }
+
+    @media (max-width: 1200px) {
+        #main-section {
+            margin-left: 0 !important;
+        }
+        #c {
+            top: 60px;
+            margin-left: 0 !important;
+            transition: margin-left 1s;
+            z-index: -10;
+            width: 100%;
+        }
+        p, h3, number {
+            opacity: 1 !important;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        header, header:after, header left a, header i, icon {
+            background-color: transparent;
+            background: none;
+        }
+        #c {
+            position: fixed;
+            top: 60px;
+            transition: margin-left 1s;
+            z-index: -10;
+        }
+        #main-section {
+            transition: margin-left 0.5s;
+            margin-top: 485px;
+        }
+        number {
+            position: absolute;
+            color: rgba(0, 0, 0, 0.1);
+            font-size: 140px;
+            font-weight: bold;
+            opacity: 0;
+        }
+        p {
+            margin-bottom: 260px;
+            width: 450px;
+            margin-right: 350px;
+            padding-top: 10px;
+            opacity: 0.2;
+        }
+    }
+</style>
+
+<canvas id="c" height="700" width="700" style="margin-left: 0px;"></canvas>
+<section id="main-section" style="margin-left: 0px;">
+    <number style="opacity: 1;">1</number>
+    <h3 style="opacity: 1;">
+    </h3>
+    <p style="opacity: 1;">
+        Javascript has a fun and easy-to-use way to create graphics in the browser called Canvas. Canvas has a relatively simple 2D API and a complex 3D API (webGL). I’ve been particularly interested in the 2D API because it’s simple; when I started using it I was able to create some pretty interesting and complex things quickly.
+        <br><br>
+        In an effort to try to understand something about 3D graphics and how they work on a computer I decided to create a globe using the 2D Canvas API. You might ask, why would you use the 2D API to create a 3D graphic like a globe? The reason I didn’t want to use the 3D API is because it does a lot of the work for you behind the scenes so you don’t really understand how the 3D object becomes a 2D image on your screen. By using the 2D API I was completely and unrelentingly involved in every step from deciding how I would represent the 3D globe data to how that data gets drawn to the screen.
+        <br><br>
+        Above you can see the finished idea (click and drag to rotate the globe). Scroll down to explore my process in creating the world from scratch without anything but some good old Javascript.
+    </p>
+    <number style="opacity: 0.3;">2</number>
+    <h3 style="opacity: 0.3;">
+        Points on a Circle
+    </h3>
+    <p style="opacity: 0.2;">
+        I started by drawing a circle to the screen. The nice thing about a sphere (the globe) is that no matter how you rotate it, its silhouette is always the same circle. I'll call this circle the globe-outline later. 
+        <br><br>
+        Now that I had the outline of the sphere, I wanted to take some points defined by latitude and longitude and draw them in the correct place on the globe. It turns out latitude and longitude are what you would call a <a href="https://en.wikipedia.org/wiki/Spherical_coordinate_system">spherical coordinate system</a> in math. I found this handy <a href="https://en.wikipedia.org/wiki/Spherical_coordinate_system#Cartesian_coordinates">formula</a> on the spherical coordinate systems wikipedia page  to convert from spherical coordinates (latitude and longitude) to <a href="https://en.wikipedia.org/wiki/Cartesian_coordinate_system">cartesian coordinates</a> (x y and z).
+<code>x' = planet.radius * <b>sin</b>(point.longitude) * 
+    <b>sin</b>(point.latitude)
+y' = planet.radius * <b>cos</b>(point.latitude)
+z' = planet.radius * <b>cos</b>(point.longitude) * 
+    <b>sin</b>(point.latitude)
+</code>
+        So we plug in the radius of our globe, the latitude and the longitude, and we get out the x y and z coordinates relative to the center of the globe.
+        <br><br>
+        Once you have x y and z coordinates, there’s a simple way to convert to screen coordinates which we can use to draw the points. How simple? Just ignore the z and draw the point at x y. If you don’t care about having a camera that can move and rotate in the 3D world, and you don’t care about perspective, this is the simplest possible method for drawing 3D points. It’s great because I don’t care about either of those things. 
+        <br><br>
+        In the example, points are being drawn whether they are on the front or the back of the globe. Since in real life you can’t see the stuff on the other side of the earth, we may want to hide the stuff on the back of the globe. To do that we just take the z coordinate we were ignoring before and use it to check if a point in on the back of the globe. If a point has a negative z coordinate it’s on the back and we just ignore it.
+        <br><br>
+        Now, catching up with what you see to the right, I added the ability to rotate the globe vertically and horizontally. To enable horizontal rotation all I had to do was add the globe’s horizontal rotation to each point’s longitude before converting to cartesian coordinates. 
+<code>point.longitude' = point.longitude + 
+    world.horizontal_rotation
+</code>
+        Vertical Rotation was a bit trickier, adding the earth’s vertical rotation to each point’s latitude just made all the points move up on the earth. This doesn’t make sense because when we vertically rotate a sphere the points on the front of the globe should move up and the points on the back should move down (or vice versa). In order to achieve vertical rotation I had to perform a <a href="https://www.siggraph.org/education/materials/HyperGraph/modeling/mod_tran/3drota.htm">cartesian rotation</a> about the x-axis on each point.
+        I’m not really rotating the globe, I’m just moving the points to where they should be if I were to really rotate the globe.
+<code>x = x'
+y = z' * <b>sin</b>(world.vertical_rotation) + y' * 
+    <b>cos</b>(world.vertical_rotation)
+z = z' * <b>cos</b>(world.vertical_rotation) - y' * 
+    <b>sin</b>(world.vertical_rotation)
+</code>
+    </p>
+    <number style="opacity: 0.3;">3</number>
+    <h3 style="opacity: 0.3;">
+        Tracing the Map
+    </h3>
+    <p style="opacity: 0.2;">
+        To get the land masses on the globe, I manually traced a 2d map of the Earth. I made it so whenever I clicked, a point was placed on the visual center of the globe. Whenever I right-click and dragged, the earth rotated. 
+        <br><br>
+        I then put an <a href="https://en.wikipedia.org/wiki/Equirectangular_projection">Equirectangular Projection Map</a> of the Earth behind the globe. An Equirectangular Projection Map must be used because it is proportional to latitude and longitude, and latitude and longitude are what I'm using to represent the points on the globe. Using a different type of map resulted in stretched and distorted continents. 
+        <br><br>
+        I made it so when I rotated the globe vertically, the map moved vertically, and when I rotated the globe horizontally, the map moved horizontally. This way, the map moved with the globe and no matter how I rotated the globe, the point on the visual center of the globe synchronized with its corresponding point on the map. With this set-up, I was able to move the map around and trace the continents, as you can see replayed in the example. As a final step, I connected the points as a path and filled it with a solid color, which is easy to do with the Canvas.
+    </p>
+    <number style="opacity: 0.3;">4</number>
+    <h3 style="opacity: 0.3;">
+        Edge of the World Problem
+    </h3>
+    <p style="opacity: 0.2;">
+        Awesome! Look’s great! Oh wait a sec, what was that…
+        <br><br>
+        An offensive straight line across the face of the globe appears on continents that are caught between the front and the back of the globe. This happens because when we ignore points on the back of the globe, the path outlining the continent starts at one point near the globe-outline, and ends at another far off point near the globe-outline. When the path is filled in it connects the starting and ending points with a visually unexpected straight line. 
+        <br><br>
+        Another less visually obvious issue is happening here, the continents caught between the front and the back of the globe don't actually go to the edge of the globe-outline. This is because the points on the front of the globe which are the start and the end of the continent path are almost never right on the globe-outline and are probably actually a bit away from it.
+        <br><br>
+        So, to summarize, the problem is twofold: <br>1. We need to connect the points which are the start and end of the continent to the globe-outline in a visually expected way. <br>2. We need to arrange the path so that we completely fill in the area occupied by the land and only the land. 
+
+    </p>
+    <number style="opacity: 0.3;">5</number>
+    <h3 style="opacity: 0.3;">
+        Edge of the World Problem Solution Part 1:<br> Backface Point-Radius Inversion
+    </h3>
+    <p style="opacity: 0.2;">
+        To the right, you can see the solution to the first sub-problem. I took all the points on the back of the globe, and instead of ignoring them, I took their screen coordinates and inverted them about the globe-outline. 
+        <br><br>
+        Now the paths leave the globe in a natural looking way. If I masked away everything outside the globe-outline the land would go all the way to the globe-outline in a way that looks correct. The land is being completely filled in. However, as you can see, the continents on the back of the sphere warp into a grotesque shape that covers the entire globe. This won’t do, even if I mask away everything that isn’t inside the globe-outline, the continents on the back of the globe aren’t filled in correctly and often obstruct your view of the continents on the front. 
+        <br><br>
+        The second sub-problem remains unsolved because area outside the land is sometimes being covered by green.
+    </p>
+    <number style="opacity: 0.3;">6</number>
+    <h3 style="opacity: 0.3;">
+        Edge of the World Problem Solution Part 2:<br> Path Clipping
+    </h3>
+    <p style="opacity: 0.2;">
+        Finally, the solution to both sub-problems. In this version we change the points we draw so the land is filled in correctly. 
+        <br><br>
+        Instead of including all the inverted points on the back of the globe, for each place where a continent is caught on the edge, I include the two points on the back of the globe necessary to bridge the gap from the front of the globe to the globe-outline. In between the two points on the back of the globe on a continent's path, I add a 3rd point a ways away from the globe that ensures that the path stays outside the circle of the globe (the 3rd point is the reason it looks like spikes or triangles protruding from the earth). This allows the path to naturally transition from the front of the globe to the back, without filling in areas that are not covered by land.
+
+    </p>
+    <number style="opacity: 0.3;">7</number>
+    <h3 style="opacity: 0.3;">
+        The End of the World
+    </h3>
+    <p style="margin-bottom: 100%; opacity: 0.2;">
+        Now, we mask away those artifacts and remove the debug markers and voila, we have the world from scratch. The road to this point was long, frustrating, and hard, but seeing it finally work was awesome and relieving. I’ve left out and abstracted away a ton of details, so if you’re curious about a more in depth look at one of the steps feel free to hit me up. I hope you found my process in creating the world interesting. Thanks for reading.
+    </p>
+</section>
+            <center><a href="https://docs.google.com/forms/d/e/1FAIpQLScoAmtBgnWmKgXppRKdKaTbdMZC7nwh8kCgAYcbDe3l4l20-Q/viewform?usp=sf_link">Subscribe to α.elliot emails</a></center>
+            <img id="source" src="./article_files/Equirectangular_projection_SW.jpg">
+            <script>
+                var c = document.getElementById('c');
+                var main = document.getElementById('main-section');
+                var offsets = Array.from(document.getElementsByTagName('p')).map(p=>p.offsetTop);
+                var current = 0;
+
+                document.getElementsByTagName('p')[0].style.opacity = 1;
+                document.getElementsByTagName('number')[0].style.opacity = 1;
+                document.getElementsByTagName('h3')[0].style.opacity = 1;
+
+                window.addEventListener('scroll', _=>{
+                    if (document.documentElement.scrollTop > 0) {
+                        c.style.marginLeft = '320px';
+                        main.style.marginLeft = '-135px';
+                    } else {
+                        c.style.marginLeft = '0';
+                        main.style.marginLeft = '0';
+                    }
+                    for (var i = offsets.length; i >= 0; i--) {
+                        if (document.documentElement.scrollTop > offsets[i]) {
+                            offsets = Array.from(document.getElementsByTagName('p')).map(p=>p.offsetTop);
+                            Array.from(document.getElementsByTagName('p')).forEach(p=>p.style.opacity = 0.2);
+                            Array.from(document.getElementsByTagName('number')).forEach(p=>p.style.opacity = 0.3);
+                            Array.from(document.getElementsByTagName('h3')).forEach(p=>p.style.opacity = 0.3);
+                            document.getElementsByTagName('p')[i].style.opacity = 1;
+                            document.getElementsByTagName('number')[i].style.opacity = 1;
+                            document.getElementsByTagName('h3')[i].style.opacity = 1;
+                            current = i;
+                            break;
+                        }
+                    }
+                })
+            </script>
+            <script src="./article_files/places.js"></script>
+            <script src="./article_files/index.js"></script>
+        </article>
+        <footer>
+            <footer-holder>
+                <left>
+                    <a href="http://elliot.website/a"><b>α.elliot</b></a>
+                    © 2021 <a href="http://elliot.website/">Elliot Evans</a>
+                </left>
+                <right>
+                    <!--<a href="α.elliot/about">About</a> ·
+                    <a href="α.elliot/contact">Contact</a> · -->
+                    <a href="http://elliot.website/">home</a> ·
+                    <a href="https://github.com/elliotwork">github</a>
+                </right>
+            </footer-holder>
+        </footer>
+        <script src="./article_files/js.js"></script>
+    </body>
+</html>

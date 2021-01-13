@@ -1,0 +1,244 @@
+body {
+    margin: 0;
+    color: #2A2A2A;
+}
+
+article {
+    padding: 0 8px;
+    position: relative;
+    display: block;
+    margin: 60px auto;
+    max-width: 700px;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 26px;
+    font-weight: 100;
+}
+
+p {
+    margin-bottom: 35px;
+}
+
+p:first-of-type:first-letter {
+    color: #2A2A2A;
+    font-size: 102px;
+    margin: 16px 7px 0px 0px;
+    float: left;
+    line-height: 50px;
+}
+
+article b {
+    background-color:YellowGreen; 
+    color: white;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+code {
+    background-color: #2A2A2A;
+    font-size: 16px;
+    color: white;
+    display: block;
+    margin: 15px 5px;
+    padding: 15px 30px;
+    overflow: hidden;
+    white-space: pre-wrap;
+    line-height: 20px;
+    font-family: 'Inconsolata';
+    position: relative;
+}
+
+code::selection {
+    background: white;
+    color: #2A2A2A;
+}
+
+code::-moz-selection {
+    background: white;
+    color: #2A2A2A;
+}
+
+code b {
+    font-weight: 300;
+    color: tomato;
+    background-color: transparent;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+h2 {
+    margin-top: 65px;
+}
+
+.caption {
+    display: block;
+    text-align: center;
+    width: 100%;
+    font-style: italic;
+    color: grey;
+}
+
+header i {
+    color:grey; 
+    font-size: 12px;
+}
+
+header {
+    height: 30px;
+    white-space: nowrap;
+    max-width: 700px;
+    width: 97%;
+    position: fixed;
+    z-index: 100;
+    top: 0px;
+    padding-top:12px;
+    background: white;
+    font-size: 20px;
+}
+
+header left {
+    float: left;
+}
+
+header right {
+    color: grey;
+    background: white;
+    position: absolute;
+    right: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 60px;
+    animation-timing-function: ease-in-out;
+    animation-duration: 0.5s;
+    vertical-align: middle;
+    font-size: 24px;
+    font-family: 'Inconsolata';
+}
+
+header right a {
+    border-bottom: none;
+}
+
+header h1 {
+    text-align: center;
+    font-size: 20px;
+    font-weight: normal; 
+    width: 50%;
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 700px){
+    header center {
+        width: 30%;
+    }
+}
+
+header:after {
+    background: linear-gradient(-45deg, transparent 16px, white 0), linear-gradient(45deg, transparent 16px, white 0);
+    background-position: left-bottom;
+    background-repeat: repeat-x;
+    background-size: 16px 16px;
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 42px;
+    left: 0px;
+    width: 100%;
+    height: 16px;
+}
+
+header icon {
+    cursor: pointer;
+    padding: 0 3px;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
+}
+
+header icon:hover {
+    background-color: #2A2A2A;
+    color: white;
+}
+
+header totop {
+    position: absolute;
+    right: 0;
+    background: white;
+}
+
+header pad {
+    float: right;
+    width: 60px;
+    height: 100%;
+}
+
+header share {
+    position: absolute; 
+    top: -3px; 
+}
+
+header left a {
+    color: #2A2A2A;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+article a {
+    text-decoration: none;
+    border-bottom: 2px dotted blue;
+}
+
+footer {
+    max-width:700px; 
+    width: 100%;  
+    margin: 10px auto 0 auto; 
+    font-family: 'Montserrat'; 
+    font-size: 14px; 
+}
+
+footer footer-holder {
+    padding: 30px; 
+    overflow: hidden; 
+    display: block;
+}
+
+footer footer-holder left {
+    float: left;
+}
+
+footer footer-holder right {
+    float: right;
+}
+
+footer a {
+    color: #2A2A2A;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: white;
+    background: #2A2A2A;
+}
+
+#hider {
+    transition: width 0.5s linear;
+}
+
+@keyframes horizontal-expand {
+    0% {width: 60px; }
+    100% {width: 100%; }
+}
+
+@media only screen and (max-width: 400px) {
+  article {
+    font-size: 16px;
+  }
+  header right {
+    font-size: 20px;
+  }
+  code {
+    font-size: 14px;  
+  }
+}

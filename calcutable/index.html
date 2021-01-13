@@ -1,0 +1,77 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Timetable Calculator</title>
+	<meta name="description" content="Calcutable">
+	<meta name="author" content="vez">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="config/style.css">
+
+</head>
+
+<body>
+
+	<script src="config/script.js"></script>
+	<div class="top-bar">
+	<nav-header>
+		<a href="http://vez.website">VEZ</a>
+	</nav-header>
+	Timetable·Calculator¬</div>
+	<div class="left-panel">
+		<div class="inputs">
+			<input type="text" placeholder="Class name" class="class-name-input"></input>
+			<br></br>
+			<div class="inner">
+				<div style="clear:both;">
+					<input type="text" placeholder="time 1 start" class="time-input" value="1:27 PM"></input>
+					<input type="text" placeholder="time 1 end" class="time-input" value="2:00 PM"></input>
+				</div>
+				<div class="days">
+					<div style="clear:both;">
+						<label><input type="checkbox" class="day-input"><text>&nbsp;sun&nbsp;</text></label><label><input type="checkbox" class="day-input"><text>&nbsp;mon&nbsp;</text></label><label><input type="checkbox" class="day-input"><text>&nbsp;tue&nbsp;</text></label><label><input type="checkbox" class="day-input"><text>&nbsp;wed&nbsp;</text></label>
+						<label><input type="checkbox" class="day-input"><text>&nbsp;thu&nbsp;</text></label><label><input type="checkbox" class="day-input"><text>&nbsp;fri&nbsp;</text></label><label><input type="checkbox" class="day-input"><text>&nbsp;sat&nbsp;</text></label>
+					</div>
+				</div>
+			</div>
+			<button onclick="add_time_div(0)" style="position:absolute; bottom: 17px; left: 10%; width: 60%;"> add another time + </button>
+		</div>
+		
+		<div class="inputs">
+			<input type="text" placeholder="Class name" class="class-name-input"></input>
+			<br></br>
+			<div class="inner">
+				<div style="clear:both;">
+					<input type="text" placeholder="time 1 start" class="time-input" value="1:27 PM"></input>
+					<input type="text" placeholder="time 1 end" class="time-input" value="2:00 PM"></input>
+				</div>
+				<div class="days">
+					<div style="clear:both;">
+						<label><input type="checkbox" class="day-input"><text>&nbsp;sun&nbsp;</text></label><label><input type="checkbox" class="day-input"><text>&nbsp;mon&nbsp;</text></label><label><input type="checkbox" class="day-input"><text>&nbsp;tue&nbsp;</text></label><label><input type="checkbox" class="day-input"><text>&nbsp;wed&nbsp;</text></label>
+						<label><input type="checkbox" class="day-input"><text>&nbsp;thu&nbsp;</text></label><label><input type="checkbox" class="day-input"><text>&nbsp;fri&nbsp;</text></label><label><input type="checkbox" class="day-input"><text>&nbsp;sat&nbsp;</text></label>
+					</div>
+				</div>
+			</div>
+			<button onclick="add_time_div(1)" style="position:absolute; bottom: 17px; left: 10%; width: 60%;"> add another time + </button>
+		</div>
+		
+		
+		
+	</div>
+	
+	<button onclick="add_class_div()" style="margin-left: 25px;"> add class </button>
+	<button onclick="submit()" > Done </button>
+	<button class="error" onclick="this.style.bottom = '-40px'"></button>
+	
+	<div class="calander">
+		<div class="time-options">
+		</div>
+		<div class="right-panel">
+		</div>
+	</div>
+</body>
+</html>

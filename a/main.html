@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+        <title>α.elliot</title>
+        
+        
+        <link href='https://fonts.googleapis.com/css?family=Montserrat|Inconsolata|Material+Icons' rel='stylesheet' type='text/css'>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--
+        <script src="config/js.js"></script> 
+        <link rel="stylesheet" href="config/css.css">
+        -->   
+        <style>
+            body {
+                margin: 0;
+                font-family: Inconsolata;
+            }
+        
+            .padding {
+                padding: 0 20px;
+            }
+        
+            .content {
+                position: relative;
+                display: block;
+            
+                width: 700px;
+                max-width: 100%;
+                margin: 0 auto;
+                
+                overflow-x: hidden;
+            }
+            
+            .content .svg-wrap {
+                display: block;
+                
+                width: 620px;
+                margin: 0 auto 40px auto;
+            }
+            
+            #svg-animate {
+                stroke-miterlimit: 10; 
+                stroke-dashoffset: 0;
+                stroke-dasharray: 500;
+                
+                fill: #fff99e;
+                
+                animation-name: example;
+                animation-duration: 4s;
+            }
+            
+            #svg-back {
+                fill:rgba(154,205,50, 0);
+                
+                animation-name: example2;
+                animation-duration: 2.4s;
+                animation-timing-function: ease-in;
+            }
+            
+            @media (max-width: 600px) {
+                #svg-back {
+                    display: none;
+                }
+                
+                #svg_5 {
+                    font-size: 70px;
+                }
+            }
+            
+            @keyframes example {
+                from {stroke-dashoffset: 500;}
+                to {stroke-dashoffset: 0; }
+            }
+            
+            @keyframes example2 {
+                from {fill:rgba(154,205,50, 1);}
+                to {fill:rgba(154,205,50, 0);}
+            }
+            
+            .article-box {
+                position: relative; 
+                margin: 60px 0; 
+                cursor: pointer;
+                
+                font-size: 35px; 
+                color: #2A2A2A; 
+                letter-spacing: 1px; 
+                overflow: hidden;
+            }
+            
+            .article-box:first-letter {
+                font-size: 100px; 
+            }
+            
+            .article-box p {
+                position: absolute; 
+                top: 0px; 
+                left: 72px; 
+                display: block; 
+                font-size: 12px; 
+                background: crimson; 
+                border: 2px dotted white; 
+                color: white; 
+                padding: 10px;
+            }
+            
+            a {
+                text-decoration: none;
+            }
+        </style>
+        
+        <script>
+        </script>
+    </head>
+    <body>
+        <div class="padding">
+            <div class="content">
+                <div class="svg-wrap">
+                    <svg width="620" height="170" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                        <rect width="620" height="110" y="50px" id="svg-back"/>
+                    <text xml:space="preserve" text-anchor="start" font-family="Montserrat, Arial, sans-serif" font-size="170" id="svg_5" y="150" stroke-width="1" stroke="#000" fill-opacity="0" letter-spacing="0"><tspan fill="#9ACD32" fill-opacity="1" stroke-width="0">α</tspan><tspan id="svg-animate">rticles</tspan></text>
+                    </g>
+                    </svg>
+                </div>
+                <center><a href="https://docs.google.com/forms/d/e/1FAIpQLScoAmtBgnWmKgXppRKdKaTbdMZC7nwh8kCgAYcbDe3l4l20-Q/viewform?usp=sf_link">Subscribe to emails</a></center>
+                <a href="./article_world.html"><div class="article-box">
+                    Making the World From Scratch
+                    <p>2018</p>
+                </div></a>
+                <a href="./article_world.html"><div class="article-box">
+                    Visualizing Process with ES6 Generators
+                    <p>2019</p>
+                </div></a>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="115.685" height="118.91" viewBox="0 0 115.685 118.91">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="115.685" height="118.91" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Component_11_1" data-name="Component 11 – 1" clip-path="url(#clip-path)">
+    <g id="bird">
+      <path id="Path_349" data-name="Path 349" d="M4244.341-1385.263l57.57-56.321v-22.562c0-11.96,12.774-14.752,16.741-14.752,3.849,0,16.952,2.4,16.952,14.752v22.562s.089,27.016-5.879,41.688c-5.637,13.861-17.334,14.129-24.182,14.633C4276.829-1383.152,4244.341-1385.263,4244.341-1385.263Z" transform="translate(-4241.841 1481.398)" fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+      <path id="Path_351" data-name="Path 351" d="M4279.073-1442.786h20.939s2.459,15.613-8.263,20.817-34.623,0-34.623,0Z" transform="translate(-4232.074 1497.319)" fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+      <path id="Path_350" data-name="Path 350" d="M4304.171-1464.962s10.335-1.562,15.18,2.641,4.2,14.169,4.2,14.169h-19.379Z" transform="translate(-4210.409 1487.045)" fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+      <path id="Path_352" data-name="Path 352" d="M4265.338-1416.9v19.337h16.249" transform="translate(-4217.083 1513.971)" fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+      <path id="Path_353" data-name="Path 353" d="M4265.338-1416.9v19.337h16.249" transform="translate(-4204.879 1513.971)" fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+      <circle id="Ellipse_346" data-name="Ellipse 346" cx="3.051" cy="3.051" r="3.051" transform="translate(81.299 13.022)" fill="black"/>
+    </g>
+  </g>
+</svg>

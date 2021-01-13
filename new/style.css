@@ -1,0 +1,172 @@
+@font-face {
+  font-family: 'TinyTim';
+  src: url('TinyTim.woff') format('woff'), /* Pretty Modern Browsers */
+       url('TinyTim.ttf')  format('truetype'); /* Safari, Android, iOS */
+}
+
+body {
+  font-family: 'TinyTim', arial, sans-serif;
+  font-size: 37px;
+  background-color: #0B0D1A;
+  color: #FAF1AA;
+  -webkit-font-smoothing: antialiased;
+  background-image: url('milky.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+a:hover {
+    color: #FFF;
+	text-decoration: none;
+}
+
+a:link {
+    color: #FFF;
+	text-decoration: none;
+}
+
+a:visited {
+    color: #FFF;
+	text-decoration: none;
+}
+
+a:active {
+    color: #FFF;
+	text-decoration: none;
+}
+.head_sub_text {
+	font-size: 12px;
+	position: relative;
+	color: #FAF1CA;
+	top: 90px;
+	letter-spacing: 3px;
+	font-family: "Times New Roman", Times, serif;
+	overflow: hidden;
+    white-space: nowrap;
+}
+.head_text {
+	position: absolute;
+	mix-blend-mode: lighten;
+	top: 10px;
+}
+
+.moon{
+	position: absolute;
+	mix-blend-mode: lighten;
+	border-radius: 1000px;
+	height:50px;
+	width: 50px;
+}
+.eclipse {
+	position: absolute;
+	background: #0B0D1A;
+	left: 33px;
+	top:4px;
+	border-radius: 1000px;
+	height:55px;
+	width: 55px;
+}
+
+.nav-link {
+	font-size: 12px;
+	position: relative;
+	color: #FAF1CA;
+	letter-spacing: 3px;
+    white-space: nowrap;
+	width: 307px; 
+	padding: 6px;
+	padding-left: 15px;
+	margin: 0 auto; 
+	top: 160px; 
+	font-family: 'TinyTim', arial, sans-serif;
+}
+
+.nav-link a {
+	display: inline-block;
+	position: relative;
+	padding: 10px;
+	border-radius: 2px;
+	overflow: hidden;
+}
+
+.nav-link a:hover {
+	box-shadow: 0 3px 6px rgba(0,0,0,0.5), 0 3px 6px rgba(0,0,0,0.58);
+	background-image: url('milkyblur.jpg');
+	background-position: 50% 10%;
+	background-repeat: no-repeat fixed;
+}
+
+.nav-link a:focus::before {
+	display: block;
+	height: 150px;
+	width: 150px;
+	top: -58px;
+	left: -13px;
+	opacity: 0;
+	content: "";
+	background: white;
+	border-radius: 1000px;
+	position: absolute;
+	animation-name: fade;
+    animation-duration: 0.5s;
+}
+
+.nav-link a:nth-child(1):focus::before {
+	left: -38px;
+}
+
+.nav-link a:nth-child(3):focus::before {
+	left: -28px;
+}
+
+.window {
+	clear: both;
+	box-shadow: 0 18px 40px 10px rgba(0, 0, 0, 0.42);
+	position: relative;
+	top: 200px;
+	margin: 0 auto;
+	height: 300px;
+	width: 500px;
+	border-radius: 6px;
+	overflow: hidden;
+	background-color:rgba(255, 255, 255, 0.3);
+	border-top: 1px solid white;
+	background-image: url('milkyblur.jpg');
+	background-position: 50% 50%;
+	background-repeat: no-repeat fixed;
+	
+	animation-name: window;
+    animation-duration: 3s;
+}
+
+.window::before {
+	height: 34px;
+	width: 600px;
+	position:relative;
+	display: block;
+	content: "";
+	background: linear-gradient(0deg, #E7E7E7, #F0F0F0);
+}
+
+.window-button {
+	position: relative;
+	margin: 5px;
+	top: -29px;
+	float: left;
+	height: 12px;
+	width: 12px;
+	border-radius: 120px;
+}
+.window-button:hover {
+	box-shadow: inset 0 0 1px #000;
+	cursor: pointer;
+}
+
+@keyframes fade {
+    from {opacity: 1; transform: scale(0);}
+    to {opacity: 0;}
+}
+
+@keyframes window {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
