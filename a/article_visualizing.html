@@ -47,20 +47,20 @@
             <p>
                     Generator functions are new to JavaScript, and many people have been struggling to find real-world practical uses for them. I’m excited to show you a cool way to use them, but let’s go over the basics first. Here’s a simple Generator function:
                 <code><b>function</b> * myGeneratorFunction(arg) {
-                    <b>yield</b> 1;
-                    <b>yield</b> arg;
-            }</code>
+    <b>yield</b> 1;
+    <b>yield</b> arg;
+}</code>
                 It looks a lot like a normal function except for two differences: an asterisk (*) after <b>function</b>, and the use of the <b>yield</b> statement.
             </p>
             <p>
                 Below is how myGeneratorFunction is used:
                 <code><b>const</b> generator = myGeneratorFunction(<i>'hello world'</i>);
-            
-            console.log(generator.next().value)
-            <i>// logs out 1</i>
-            
-            console.log(generator.next().value)
-            <i>// logs out 'hello world'</i></code>
+
+console.log(generator.next().value)
+<i>// logs out 1</i>
+
+console.log(generator.next().value)
+<i>// logs out 'hello world'</i></code>
             </p>
             <p>
                 Calling a Generator Function does not execute it right away, instead it returns a Generator object. Calling <b>.next()</b> on the Generator object causes myGeneratorFunction to execute up to the first yield statement, returning the value appearing after the yield keyword.
@@ -97,72 +97,72 @@
             <p>
                 This is the insertion sort implementation:
             <code><b>function</b> insertionSort(inputArray) {
-                <b>for</b> (let i = 0; i < inputArray.length; i++) {
-                    <b>const</b> value = inputArray[i];
-            
-                    <b>let</b> j = i - 1;
-                    <b>while</b> (j >= 0 && value < inputArray[j]) {
-                        inputArray[j+1] = inputArray[j];
-                        j -= 1;
-                    }
-                    inputArray[j+1] = value
-                }
-                <b>return</b> inputArray;
-            }</code>
+    <b>for</b> (let i = 0; i < inputArray.length; i++) {
+        <b>const</b> value = inputArray[i];
+
+        <b>let</b> j = i - 1;
+        <b>while</b> (j >= 0 && value < inputArray[j]) {
+            inputArray[j+1] = inputArray[j];
+            j -= 1;
+        }
+        inputArray[j+1] = value
+    }
+    <b>return</b> inputArray;
+}</code>
             </p>
             <p>
                 Below we have a function that draws an array as a bar graph on a canvas. I use the <a href="https://developer.mozilla.org/kab/docs/Web/API/Canvas_API">2d Canvas API</a>:
             <code><b>const</b> c = document.getElementById(<i>'canvasEl'</i>);
-            <b>const</b> ctx = c.getContext(<i>'2d'</i>);
-            
-            <b>function</b> drawGraphFromArray(array) {
-                ctx.clearRect(0,0,c.width,c.height);
-                <b>const</b> barWidth = c.width / array.length;
-                <b>const</b> barHeightScale = c.height / Math.max(...array);
-            
-                array.forEach((value, i) => ctx.fillRect(
-                    i * barWidth,
-                    0,
-                    barWidth,
-                    barHeightScale * value
-                ));
-            }</code>
+<b>const</b> ctx = c.getContext(<i>'2d'</i>);
+
+<b>function</b> drawGraphFromArray(array) {
+    ctx.clearRect(0,0,c.width,c.height);
+    <b>const</b> barWidth = c.width / array.length;
+    <b>const</b> barHeightScale = c.height / Math.max(...array);
+
+    array.forEach((value, i) => ctx.fillRect(
+        i * barWidth,
+        0,
+        barWidth,
+        barHeightScale * value
+    ));
+}</code>
                 <span class="caption">draws a bar graph where x axis: index in the array, y axis: value at index</span>
             </p>
             <p>
                 Now back to our regular programming. In order to slow down our insertion sort function we are going to rewrite it as a Generator function. Sounds tricky, right? It’s actually the opposite of tricky, it’s SUPER EASY. This is the rewritten insertion sort:
             <code><b>function</b> <ins>*</ins> insertionSort(inputArray) {
-                <b>for</b> (let i = 0; i < inputArray.length; i++) {
-                    <b>const</b> value = inputArray[i];
-            
-                    <b>let</b> j = i - 1;
-                    <b>while</b> (j >= 0 && value < inputArray[j]) {
-                        inputArray[j+1] = inputArray[j];
-                        j -= 1;
-                        <ins>yield inputArray;</ins>
-                    }
-                    inputArray[j+1] = value
-                }
-                <b>return</b> inputArray;
-            }</code>
+    <b>for</b> (let i = 0; i < inputArray.length; i++) {
+        <b>const</b> value = inputArray[i];
+
+        <b>let</b> j = i - 1;
+        <b>while</b> (j >= 0 && value < inputArray[j]) {
+            inputArray[j+1] = inputArray[j];
+            j -= 1;
+            <ins>yield inputArray;</ins>
+        }
+        inputArray[j+1] = value
+    }
+    <b>return</b> inputArray;
+}</code>
                 There are only two changes. We add an asterisk after the function keyword and add a yield statement whenever we want to draw a frame in the animation, yielding the array being sorted. With those simple changes, we’ve converted a function into a Generator function that is executed one step at a time, and yields the data we need to visualize its process. This rewrite is great because it’s unintrusive - there’s almost no chance the conversion will affect the logic of the function.
             </p>
             <p>
                 Let’s put <b>drawGraphFromArray</b> and our new <b>insertionSort</b> Generator function together in a  <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame">requestAnimationFrame</a> render loop, resulting in our finished animation:
             
             <code><i>// code from above ...</i>
-            
-            <b>const</b> randomArr = Array(50).fill(0).map(Math.random);
-            <b>const</b> sortGenerator = insertionSort(randomArr);
-            
-            <b>function</b> renderLoop() {
-                <b>const</b> yieldedArray = sortGenerator.next().value;
-                
-                drawGraphFromArray(yieldedArr);
-                
-                requestAnimationFrame(renderLoop);
-            }
-            renderLoop();</code>
+
+<b>const</b> randomArr = Array(50).fill(0).map(Math.random);
+<b>const</b> sortGenerator = insertionSort(randomArr);
+
+<b>function</b> renderLoop() {
+    <b>const</b> yieldedArray = sortGenerator.next().value;
+    
+    drawGraphFromArray(yieldedArr);
+    
+    requestAnimationFrame(renderLoop);
+}
+renderLoop();</code>
             
                 <canvas id="canvasEl" width="700" height="300" style="width: 100%;"></canvas>
                 <span class="caption">Our beautiful finished animation</span>
