@@ -5,6 +5,8 @@ game(
   gridSize*17,
   (circuit) => {
     CircuitGrid.insert(circuit, [1, 1], Direction.UP, CircuitGrid.SOURCE);
+
+    CircuitGrid.insert(circuit, [1, 3], Direction.UP, CircuitGrid.SOURCE);
     CircuitGrid.insert(circuit, [11, 1], Direction.UP, CircuitGrid.BOX, {
       func: (vec, item) => {
         circuit.items = circuit.items.filter((otherItem) => otherItem !== item);
