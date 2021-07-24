@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Qubit Gen 2</title>
+<link rel="stylesheet" type="text/css" href="./inspector.css">
+<script src='https://unpkg.com/panzoom@9.4.0/dist/panzoom.min.js'></script>
+<body>
+    <article >
+        <section style="background: #FFD602; display: flex; align-items: center; justify-content: center;">
+            <h1 style="text-align: center;">What if you could see qubits!? 👀</h1>
+        </section>
+
+        <section>
+            <h2><img src="me.jpeg" style="height: 12vw; border-radius: 100%; display: inline; vertical-align: middle;"> Hi, I'm Elliot</h2>
+            <ul>
+                <li>Did undergrad research in Quantum Computing <span style="font-size: 1vw;">(Quantum Walks)</span></li>
+                <li>Really into Math & Science education and interaction</li>
+                <li>From Canada🇨🇦</li>
+            </ul>
+        </section>
+
+        <section id="2">
+            <h2>Topics</h2>
+            <ol>
+                <li>Ideation & Inspiration</li>
+                <li>Visualizing a Qubit</li>
+                <li>Future Work</li>
+            </ol>
+        </section>
+
+        <!-----------------------------------
+            THE JOURNEY
+        ------------------------------------>
+        <section style="background: black; color: white;">
+            <h2>Ideation & Inspiration 👀</h2>
+            <h3>About this project and what I made</h3>
+        </section>
+
+        <section id="2">
+            <h2>Some beginner questions</h2>
+            <ul>
+                <li>What is a quantum computer?</li>
+                <li>Why are quantum computers more effective at solving some problems?</li>
+                <li><strong>What is a qubit?</strong></li>
+                <li>...</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Ideation Process</h2>
+            <img src="./figma.svg" id="zoom" style="cursor: move;">
+        </section>
+
+        <section id="2">
+            <h2>What is a qubit? 🤔</h2>
+            <ul>
+                <li>How qubits are</li>
+                <li>How qubits can change</li>
+                <li style="color: #bba;">How qubits are measured</li>
+                <li style="color: #bba;">How multiple qubits work together</li>
+            </ul>
+        </section>
+
+        <div style="width: 100vw; flex-shrink: 0;">
+            <div style="width: 300vw; flex-shrink: 0; position: relative;">
+                <section style="position: sticky; left: 0; top: 0;">
+                    <h2>Inspiration</h2>
+                </section>
+                <section style="display: flex;
+                align-items: center;
+                position: absolute; left: 0; top: 0;">
+                    <span style="width: min-content; padding-top: 20vh;">
+                        <h3 style="margin: 0; width: 800px;">IBM's Hello Quantum</h3>
+                        <video controls>
+                            <source src="http://helloquantum.mybluemix.net/images/ContentOnly.mov" type="video/mp4">
+                            loading error
+                        </video>
+                        <br>source: <a href="helloquantum.mybluemix.net">helloquantum.mybluemix.net</a>
+                    </span>
+                </section>
+            </div>
+        </div>
+
+        <section style="display: flex;
+        align-items: center;
+        ">
+            <span style="width: min-content; padding-top: 20vh;">
+                <h3 style="margin: 0;">5D Chess with Multiverse Time Travel</h3>
+                <video controls >
+                    <source src="https://cdn.cloudflare.steamstatic.com/steam/apps/256790570/movie480_vp9.webm?t=1594259095" type="video/webm">
+                    loading error
+                </video>
+                <br>source: <a href="5dchesswithmultiversetimetravel.com">5dchesswithmultiversetimetravel.com</a>
+            </span>
+        </section>
+
+        <section style="display: flex;
+        align-items: center;" id="pre-figma2">
+            <span style="width: min-content; padding-top: 20vh;">
+                <h3 style="margin: 0;">Shapez.io</h3>
+                <video controls>
+                    <source src="https://cdn.cloudflare.steamstatic.com/steam/apps/256838241/movie480_vp9.webm?t=1623328630" type="video/webm">
+                    loading error
+                </video>
+                <br>source: <a href="store.steampowered.com/app/1318690/shapezio">store.steampowered.com/app/1318690/shapezio</a>
+            </span>
+        </section>
+
+        <section id="figma2">
+            <h2>Designs</h2>
+        </section>
+
+        <!-----------------------------------
+            VISUALIZING A QUBIT
+        ------------------------------------>
+        <section style="background: black; color: white;">
+            <h2>Visualizing a Qubit 👀</h2>
+            <h3>Learnings and choices I made while visualizing qubits</h3>
+        </section>
+
+        <section id="2">
+            <h2>What is a qubit? 🤔</h2>
+            <ul>
+                <li>How qubits are</li>
+                <li style="color: #bba;">How qubits can change</li>
+                <li style="color: #bba;">How qubits are measured</li>
+                <li style="color: #bba;">How multiple qubits work together</li>
+            </ul>
+        </section>
+
+        <div style="width: 100vw; flex-shrink: 0;">
+            <div style="width: 200vw; flex-shrink: 0; position: relative;">
+                <section style="position: sticky; left: 0; top: 0;">
+                    <h2>Visualizing how qubits are - prior art</h2>
+                </section>
+                <section id="2" style="display: flex; position: absolute; left: 0; top: 0;">
+                    <span style="padding-top: 20vh;">
+                        <h3>Bloch Spheres</h3>
+                        <ul>
+                            <li>+ Elegant</li>
+                            <li>+ Physically Relevant</li>
+                            <li> - A bit complicated</li>
+                        </ul>
+                        <img src="./comic.jpg" width="400">
+                    </span>
+                    <span>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Bloch_sphere.svg/1200px-Bloch_sphere.svg.png" height="400" style="margin-top: 20vh;">
+                        <br>source: <a href="https://en.wikipedia.org/wiki/Bloch_sphere#/media/File:Bloch_sphere.svg">wikipedia</a> CC BY-SA 3.0
+                    </span>
+                </section>
+            </div>
+        </div>
+
+        <section style="display: flex;">
+            <span style="padding-top: 20vh;">
+                <h3>Probabilities</h3>
+                <ul>
+                    <li>+ Actual outcome of quantum computation</li>
+                    <li> - Classical information, not quantum</li>
+                    <li> - Boring <span style="font-size: 1vw;">(also applies to state vectors)</span></li>
+                </ul>
+            </span>
+            <img src="outcomes.png" height="280" style=" margin-top: 20vh;">
+        </section>
+
+        <section>
+            <span>
+                <h2>Visualizing how qubits are - my solution</h2>
+                <h3>Arrow kets <img src="right.png" style="height: 5vw; display: inline; vertical-align: middle;">
+                    <img src="up.png" style="height: 5vw; display: inline; vertical-align: middle;">
+                    <img src="diag.png" style="height: 5vw; display: inline; vertical-align: middle;"></h3>
+                <ul>
+                    <li>+ Show off entanglement & phase<span style="font-size: 1vw;">(non-complex phase)</span> </li>
+                    <li>+ Simple and color coded</li>
+                    <li> - Limited</li>
+                </ul>
+            </span>
+            
+        </section>
+
+        <section id="2">
+            <h2>What is a qubit? 🤔</h2>
+            <ul>
+                <li style="color: #bba;">How qubits are</li>
+                <li>How qubits can change</li>
+                <li style="color: #bba;">How qubits are measured</li>
+                <li style="color: #bba;">How multiple qubits work together</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Conventional gates + gamification</h2>
+            <p>Gates use conventional notation.</p>
+            <img src="x.png" style="height: 5vw;">
+            <img src="z.png" style="height: 5vw;">
+            <img src="h.png" style="height: 5vw;">
+            <p>But there is a source and a goal, and wires can go in any direction.</p>
+            <img src="start.png" style="height: 5vw;">
+            <img src="finish.png" style="height: 5vw;">
+        </section>
+
+        <section style="background: black; color: white;">
+            <h2>Result:</h2>
+        </section>
+
+        <section id="1" style="padding: 0;">
+            <note>Puzzle. Collect 10: <img height="60" src="./solutionket.png"><br>
+            <a href="https://elliot.website/qubit">elliot.website/qubit</a></note>
+        </section>
+
+        <!-----------------------------------
+            FUTURE WORK
+        ------------------------------------>
+        <section style="background: black; color: white;">
+            <h2>Future Work 👀</h2>
+        </section>
+
+        <section>
+            <h2>What is a qubit? 🤔</h2>
+            <ul>
+                <li style="color: #bba;">How qubits are</li>
+                <li style="color: #bba;">How qubits can change</li>
+                <li>How qubits are measured</li>
+                <li>How multiple qubits work together</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Visualizing entanglement - prior art</h2>
+            <a href="https://algassert.com/post/1716">
+                <img src="https://algassert.com/assets/2017-08-06-visualizing-entanglement/entanglement-display-iter7.gif">
+                <br>
+                source: algassert.com/post/1716
+            </a>
+        </section>
+
+        <section id="futu">
+            <h2>Tetrahedron entanglement visualization</h2>
+            <h3>I'm focusing on 2 qubits</h3>
+            <img src="viz2.png" height="280" style="display: inline;">
+        </section>
+
+        <section id="futu">
+            <h2>Explorable Explanation</h2>
+            <p>Coming up: an article explaining the basics of quantum computing with puzzles throughout!</p>
+            <img src="measure.png" style="height: 5vw;">
+        </section>
+
+        <section style="background: black; color: white; display: flex; align-items: center; justify-content: center;">
+            <span>
+            <h2>Thank You for taking a look 👀</h2>
+            <a style="color: white" href="https://twitter.com/elliotokay"><img height="20" style="display: inline" src="./twitterwhite.png">@elliotokay</a>
+        </span>
+        </section>
+
+        <section>
+            <h2>Appendix - References & Inspiration</h2>
+            <h3 style="font-size: 1vw;">To the best of my understanding, use of materials from these sources is acceptable under fair-use.</li></h3>
+            <ul style="font-size: 2vw;">
+                <li><a href="https://medium.com/qiskit/hello-quantum-2c1c00fe830c">IBM's Hello Quantum</a></li>
+                <li><a href="https://quantum-computing.ibm.com/composer/docs/iqx/visualizations">IBM's Qubit Visualizations</a></li>
+                <li><a href="https://quantum.country/qm">Quantum mechanics distilled</a></li>
+                <li><a href="https://shapez.io">Shapez.io</a></li>
+                <li><a href="https://www.5dchesswithmultiversetimetravel.com/">5D Chess With Multiverse Time Travel</a></li>
+            </ul>
+        </section>
+        <section>
+            <h2>Appendix - Presentation Code</h2>
+            <ul>
+                <li><a href="https://github.com/observablehq/runtime">Observable Runtime</a> ISC license</li>
+                <li><a href="https://github.com/anvaka/panzoom">Panzoom</a> MIT license</li>
+                <li><a href="https://github.com/tonsky/FiraCode">Fira Code</a><span style="font-size: 1vw;">(not distributed with this presentation)</span></li>
+            </ul>
+        </section>
+    </article>
+    <a href="https://elliot.website/qubit-talk" style="position: fixed; bottom: 2vh; right: 2vh; color: black;">elliot.website/qubit-talk</a>
+</body>
+<style>
+    html, body {
+        margin: 0;
+        overflow-y: hidden;
+        line-height: 1.4;
+        font-family: "Fira code"
+    }
+
+    article {
+        display: flex;
+        flex-direction: row;
+        scroll-snap-type: x mandatory;
+        overflow-y: hidden;
+        overflow-x: scroll;
+    }
+
+    section {
+        width: 100vw;
+        height: 100vh;
+        overflow: none;
+        box-sizing: border-box;
+        flex-shrink: 0;
+        flex-grow: 0;
+        position: relative;
+        scroll-snap-align: center;
+        overflow: hidden;
+        padding: 5vh 10vw;
+    }
+
+    h1 {
+        font-size: 4.4vw;
+    }
+
+    h2 {
+        font-size: 4.2vw;
+        font-weight: 900;
+    }
+
+    h3 {
+        font-size: 3.9vw;
+        font-weight: 300;
+        font-style: italic;
+    }
+
+    ul, ol {
+        font-size: 3.4vw;
+    }
+
+    li {
+        margin-bottom: 2.9vh;
+    }
+
+    p {
+        font-size: 3.4vw;
+    }
+
+    note {
+        position: absolute;
+        bottom: 20vh;
+        left: 16vw;
+        font-size: 4vw;
+        font-weight: bold;
+    }
+
+    img, video {
+        max-width: 80vw;
+        max-height: 60vh;
+    }
+
+    .observablehq {
+        display: inline;
+    }
+</style>
+<script type="module">
+
+    import define from "./index.js";
+    import define2 from "./index2.js";
+    import {Runtime, Library, Inspector} from "./runtime.js";
+
+    const runtime = new Runtime();
+    const main = runtime.module(define, Inspector.into(document.getElementById('1')));
+    let main2;
+    document.getElementById('futu').addEventListener('click', () => { // performance optimization
+        if (!main2) {
+            main2 = runtime.module(define2, Inspector.into(document.getElementById('futu')));
+        } else {
+            runtime.dispose();
+        }
+    });
+
+    let currentSection = 0;
+    const sectionEls = document.querySelectorAll('section');
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') {
+            currentSection = Math.min(currentSection+1, sectionEls.length-1);
+        }
+        if (e.key === 'ArrowLeft') {
+            currentSection = Math.max(currentSection-1, 0);
+        }
+        sectionEls[currentSection].scrollIntoView();
+    });
+
+    const el = document.getElementById('zoom');
+    panzoom(el);
+
+    let i = 0;
+    for (const videoEl of document.querySelectorAll('video')) {
+        if (i !== 0) videoEl.currentTime = 10; // don't set time of ibm video
+        i++;
+    }
+
+    document.getElementById('pre-figma2').addEventListener('click', () => {
+        document.getElementById('figma2').appendChild(el);
+        panzoom(el);
+    })
+</script>

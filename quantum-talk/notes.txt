@@ -1,0 +1,4 @@
+- every section should be flex with some spans in it
+- url should be updated to the hash when scrolling
+- there should be a function which tells you the current slide and how scrolled it is so that
+    per-slide programmatic animations can be done.

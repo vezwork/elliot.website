@@ -1,0 +1,14 @@
+{
+  "name": "71f5a7d63ff8cbdc",
+  "main": "71f5a7d63ff8cbdc@2514.js",
+  "version": "2514.0.0",
+  "homepage": "https://observablehq.com/d/71f5a7d63ff8cbdc",
+  "author": {
+    "name": "Elliot",
+    "url": "https://observablehq.com/@vezwork"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4"
+  }
+}
