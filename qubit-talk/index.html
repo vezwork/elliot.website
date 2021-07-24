@@ -365,11 +365,12 @@
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight') {
             currentSection = Math.min(currentSection+1, sectionEls.length-1);
+            sectionEls[currentSection].scrollIntoView();
         }
         if (e.key === 'ArrowLeft') {
             currentSection = Math.max(currentSection-1, 0);
+            sectionEls[currentSection].scrollIntoView();
         }
-        sectionEls[currentSection].scrollIntoView();
     });
 
     const el = document.getElementById('zoom');
