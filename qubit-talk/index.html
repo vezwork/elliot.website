@@ -2,23 +2,33 @@
 <meta charset="utf-8">
 <title>Visualizing Qubits for Quantum Education</title>
 <link rel="stylesheet" type="text/css" href="./inspector.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <script src='https://unpkg.com/panzoom@9.4.0/dist/panzoom.min.js'></script>
 <body>
-    <article >
+    <article>
         <section style="background: #FFD602; display: flex; align-items: center; justify-content: center;">
-            <h1 style="text-align: center;">What if you could see qubits!? 👀</h1>
+            <span style="text-align: center;">
+                <h1 style="text-align: center;">What if you could see qubits!? 👀</h1>
+                <br>
+                <small>
+                    This talk was presented at <a href="https://fullstackquantumcomputation.tech/anniversary/">PIQUE's one year anniversary event</a>.
+                    I have edited the audio from that talk and put it here.
+                    Click play on the audio and the presentation slides will automatically
+                    play along.
+                </small>
+            </span>
         </section>
 
         <section>
             <h2><img src="me.jpeg" style="height: 12vw; border-radius: 100%; display: inline; vertical-align: middle;"> Hi, I'm Elliot</h2>
             <ul>
-                <li>Did undergrad research in Quantum Computing <span style="font-size: 1vw;">(Quantum Walks)</span></li>
+                <li>Did undergrad research in Quantum Computing <small>(Quantum Walks)</small></li>
                 <li>Really into Math & Science education and interaction</li>
                 <li>From Canada🇨🇦</li>
             </ul>
         </section>
 
-        <section id="2">
+        <section>
             <h2>Topics</h2>
             <ol>
                 <li>Ideation & Inspiration</li>
@@ -35,7 +45,7 @@
             <h3>About this project and what I made</h3>
         </section>
 
-        <section id="2">
+        <section>
             <h2>Some beginner questions</h2>
             <ul>
                 <li>What is a quantum computer?</li>
@@ -47,10 +57,11 @@
 
         <section>
             <h2>Ideation Process</h2>
-            <img src="./figma.svg" id="zoom" style="cursor: move;">
+            <small>You can drag and zoom this design:</small>
+            <img src="./figma.svg" id="zoom" style="cursor: move; z-index: -1;">
         </section>
 
-        <section id="2">
+        <section>
             <h2>What is a qubit? 🤔</h2>
             <ul>
                 <li>How qubits are</li>
@@ -113,7 +124,7 @@
             <h3>Learnings and choices I made while visualizing qubits</h3>
         </section>
 
-        <section id="2">
+        <section>
             <h2>What is a qubit? 🤔</h2>
             <ul>
                 <li>How qubits are</li>
@@ -128,7 +139,7 @@
                 <section style="position: sticky; left: 0; top: 0;">
                     <h2>Visualizing how qubits are - prior art</h2>
                 </section>
-                <section id="2" style="display: flex; position: absolute; left: 0; top: 0;">
+                <section style="display: flex; position: absolute; left: 0; top: 0;">
                     <span style="padding-top: 20vh;">
                         <h3>Bloch Spheres</h3>
                         <ul>
@@ -152,7 +163,7 @@
                 <ul>
                     <li>+ Actual outcome of quantum computation</li>
                     <li> - Classical information, not quantum</li>
-                    <li> - Boring <span style="font-size: 1vw;">(also applies to state vectors)</span></li>
+                    <li> - Boring</li>
                 </ul>
             </span>
             <img src="outcomes.png" height="280" style=" margin-top: 20vh;">
@@ -165,7 +176,7 @@
                     <img src="up.png" style="height: 5vw; display: inline; vertical-align: middle;">
                     <img src="diag.png" style="height: 5vw; display: inline; vertical-align: middle;"></h3>
                 <ul>
-                    <li>+ Show off superposition & phase<span style="font-size: 1vw;">(non-complex phase)</span> </li>
+                    <li>+ Show off superposition & phase<small>(non-complex phase)</small> </li>
                     <li>+ Simple and color coded</li>
                     <li> - Limited</li>
                 </ul>
@@ -173,7 +184,7 @@
             
         </section>
 
-        <section id="2">
+        <section>
             <h2>What is a qubit? 🤔</h2>
             <ul>
                 <li style="color: #bba;">How qubits are</li>
@@ -198,7 +209,7 @@
             <h2>Result:</h2>
         </section>
 
-        <section id="1" style="padding: 0;">
+        <section class="puzzle" style="padding: 0;">
             <note>Puzzle. Collect 10: <img height="60" src="./solutionket.png"><br>
             <a href="https://elliot.website/qubit">elliot.website/qubit</a></note>
         </section>
@@ -229,13 +240,14 @@
             </a>
         </section>
 
-        <section id="futu">
+        <section class="futu">
             <h2>Tetrahedron entanglement visualization</h2>
-            <h3>I'm focusing on 2 qubits</h3>
-            <img src="viz2.png" height="280" style="display: inline;">
+            <small><br>Click anywhere on this slide to see a 3D version.</small>
+            <h3 style="margin: 0.1vh 0;">I'm focusing on 2 qubits</h3>
+            <img src="viz2.png" class="multiqubitimg" height="280" style="display: inline;">
         </section>
 
-        <section id="futu">
+        <section>
             <h2>Explorable Explanation</h2>
             <p>Coming up: an article explaining the basics of quantum computing with puzzles throughout!</p>
             <img src="measure.png" style="height: 5vw;">
@@ -250,7 +262,7 @@
 
         <section>
             <h2>Appendix - References & Inspiration</h2>
-            <h3 style="font-size: 1vw;">To the best of my understanding, use of materials from these sources is acceptable under fair-use.</li></h3>
+            <h3 style="font-size: 1.5vw;">To the best of my understanding, use of materials from these sources is acceptable under fair-use.</li></h3>
             <ul style="font-size: 2vw;">
                 <li><a href="https://medium.com/qiskit/hello-quantum-2c1c00fe830c">IBM's Hello Quantum</a></li>
                 <li><a href="https://quantum-computing.ibm.com/composer/docs/iqx/visualizations">IBM's Qubit Visualizations</a></li>
@@ -268,7 +280,11 @@
             </ul>
         </section>
     </article>
-    <a href="https://elliot.website/qubit-talk" style="position: fixed; bottom: 2vh; right: 2vh; color: black;">elliot.website/qubit-talk</a>
+    <a href="https://elliot.website/qubit-talk" style="position: fixed; bottom: 2vh; right: 2vh; color: black;"><audio controls preload="none" id="audio">
+        <source src="./editedPres.ogg" type="audio/ogg">
+        <source src="./editedPres.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio></a>
 </body>
 <style>
     html, body {
@@ -334,13 +350,48 @@
         font-weight: bold;
     }
 
-    img, video {
+    small {
+        font-size: 1.5vw;
+    }
+
+    img, video, audio {
         max-width: 80vw;
         max-height: 60vh;
     }
 
     .observablehq {
         display: inline;
+    }
+
+    @media only screen and (max-width: 800px) {
+        h1 {
+            font-size: 30px;
+        }
+        h2 {
+            font-size: 27px;
+            font-weight: 900;
+        }
+        h3 {
+            font-size: 24px;
+            font-weight: 300;
+            font-style: italic;
+        }
+        note {
+            font-size: 27px;
+        }
+        p {
+            font-size: 21px;
+        }
+        ul, ol {
+            font-size: 21px;
+        }
+        small {
+            font-size: 16px;
+        }
+        .multiqubitimg {
+            height: 100px;
+            width: 120px;
+        }
     }
 </style>
 <script type="module">
@@ -349,36 +400,105 @@
     import define2 from "./index2.js";
     import {Runtime, Library, Inspector} from "./runtime.js";
 
+    // presentation scripts:
+
+    const articleEl = document.querySelector('article');
+
+    let currentSection = 0;
+    const slideEls = articleEl.children;
+
+    let i = 0;
+    for (const slideEl of slideEls) {
+        slideEl.id = 'slide-' + i;
+        i++;
+    }
+
+    if (window.location.hash) {
+        currentSection = parseInt(window.location.hash.split("slide-")[1]);
+        slideEls[currentSection].scrollIntoView();
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.target === audioEl) return;
+        if (e.key === 'ArrowRight') {
+            const currentTargetSection = Math.min(currentSection+1, slideEls.length-1);
+            slideEls[currentTargetSection].scrollIntoView({behavior: "smooth"});
+        }
+        if (e.key === 'ArrowLeft') {
+            const currentTargetSection = Math.max(currentSection-1, 0);
+            slideEls[currentTargetSection].scrollIntoView({behavior: "smooth"});
+        }
+
+        if (e.key === 'd') console.log(JSON.stringify(data));
+    });
+
+    const audioSlideData = [{"currentTime":3.551313,"slideNumber":1},{"currentTime":31.672686,"slideNumber":2},{"currentTime":47.987933,"slideNumber":3},{"currentTime":53.428334,"slideNumber":4},{"currentTime":83.468989,"slideNumber":5},{"currentTime":115.349136,"slideNumber":6},{"currentTime":165.691679,"slideNumber":7},{"currentTime":207.228092,"slideNumber":8},{"currentTime":250.490808,"slideNumber":9},{"currentTime":281.772113,"slideNumber":10},{"currentTime":289.139141,"slideNumber":11},{"currentTime":293.528832,"slideNumber":12},{"currentTime":324.476393,"slideNumber":13},{"currentTime":357.054724,"slideNumber":14},{"currentTime":393.769893,"slideNumber":15},{"currentTime":397.776362,"slideNumber":16},{"currentTime":419.630188,"slideNumber":17},{"currentTime":421.308453,"slideNumber":18},{"currentTime":445.477492,"slideNumber":19},{"currentTime":446.932897,"slideNumber":20},{"currentTime":453.468275,"slideNumber":21},{"currentTime":465.070649,"slideNumber":22},{"currentTime":473.395651,"slideNumber":23},{"currentTime":480.361334,"slideNumber":24},{"currentTime":481.361334,"slideNumber":25}];
+
+    let goingToHistoryPage = null;
+    const audioEl = document.getElementById('audio');
+    function animate() {
+        requestAnimationFrame(animate);
+        const scroll = articleEl.scrollLeft;
+        const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+        const scrollSection = Math.round(scroll / vw);
+
+        if (audioEl.currentTime > 0) {
+            for (const {currentTime, slideNumber} of audioSlideData) {
+                if (audioEl.currentTime < currentTime) {
+                    if (currentSection !== slideNumber - 1) {
+                        currentSection = slideNumber - 1;
+                        slideEls[currentSection].scrollIntoView({behavior: "smooth"});
+                        const newUrl = '#slide-' + currentSection;
+                        history.replaceState("", 'What if you could see qubits!? - Slide ' + currentSection, newUrl);
+                    }
+                    break;
+                }
+            }
+        } else {
+            if (currentSection !== scrollSection) {
+                currentSection = scrollSection;
+                const newUrl = '#slide-' + currentSection;
+                history.replaceState("", 'What if you could see qubits!? - Slide ' + currentSection, newUrl);
+            }
+        }
+    }
+    requestAnimationFrame(animate);
+
+
+    // hacks:
+
     const runtime = new Runtime();
-    const main = runtime.module(define, Inspector.into(document.getElementById('1')));
+    const main = runtime.module(define, Inspector.into(document.querySelector('.puzzle')));
     let main2;
-    document.getElementById('futu').addEventListener('click', () => { // performance optimization
+    document.querySelector('.futu').addEventListener('click', () => { // performance optimization
         if (!main2) {
-            main2 = runtime.module(define2, Inspector.into(document.getElementById('futu')));
+            main2 = runtime.module(define2, Inspector.into(document.querySelector('.futu')));
         } else {
             runtime.dispose();
         }
     });
 
-    let currentSection = 0;
-    const sectionEls = document.querySelectorAll('section');
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight') {
-            currentSection = Math.min(currentSection+1, sectionEls.length-1);
-            sectionEls[currentSection].scrollIntoView();
-        }
-        if (e.key === 'ArrowLeft') {
-            currentSection = Math.max(currentSection-1, 0);
-            sectionEls[currentSection].scrollIntoView();
+    const el = document.getElementById('zoom');
+    let zoomInstance = panzoom(el, {
+        onTouch: (e) => {
+            if (e.target !== el) return false; // tells the library to not preventDefault.
         }
     });
 
-    const el = document.getElementById('zoom');
-    panzoom(el);
-
-    let i = 0;
+    i = 0;
     for (const videoEl of document.querySelectorAll('video')) {
         if (i !== 0) videoEl.currentTime = 10; // don't set time of ibm video
         i++;
     }
+
+    // Iterable script
+
+    function* withHistory(number, iterable) {
+        let history = Array(number);
+        for (const result of iterable) {
+        history = [result, ...history];
+        history.length = number;
+        yield history;
+        }
+    };
 </script>

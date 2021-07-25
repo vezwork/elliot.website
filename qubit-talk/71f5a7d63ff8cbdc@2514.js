@@ -19,25 +19,23 @@ game(
       },
       label: "🏁"
     });
+    CircuitGrid.insert(circuit, [2, 1], Direction.LEFT);
+    CircuitGrid.insert(circuit, [3, 1], Direction.LEFT);
+    CircuitGrid.insert(circuit, [4, 1], Direction.LEFT);
+    CircuitGrid.insert(circuit, [5, 1], Direction.LEFT);
+    CircuitGrid.insert(circuit, [6, 1], Direction.LEFT);
+    CircuitGrid.insert(circuit, [7, 1], Direction.LEFT);
+    CircuitGrid.insert(circuit, [8, 1], Direction.LEFT);
+    CircuitGrid.insert(circuit, [9, 1], Direction.LEFT);
+    CircuitGrid.insert(circuit, [10, 1], Direction.LEFT);
+    CircuitGrid.insert(circuit, [11, 1], Direction.LEFT);
   },
   (circuit, width, height, context) => {
-    context.setTransform(4, 0, 0, 4, 0, 0);
-    Draw.statusText([width - 300, 25], "Collect 10", context);
-    Draw.item(
-      {
-        data: Vec2.rotate((Math.PI * 5) / 4, [0, 1]),
-        position: [width - 158, 17]
-      },
-      context
-    );
-    Draw.statusText([width - 128, 25], "to solve.", context);
-    Draw.statusText([width - 300, 55], circuit.score, context);
-    Draw.statusText([width - 260, 55], "collected.", context);
   }
 )
 )});
   main.variable(observer("gridSize")).define("gridSize", ["width"], function(width){return(
-Math.min(width/15, 64)
+64
 )});
   main.variable(observer("game")).define("game", ["gridSize","DOM","width","InputState","Direction","Bool","Vec2","Array2D","CircuitGrid","Item","Draw","invalidation"], function(gridSize,DOM,width,InputState,Direction,Bool,Vec2,Array2D,CircuitGrid,Item,Draw,invalidation){return(
 (height=gridSize*6,onInit=()=>{}, onLoop=()=>{}) => {
@@ -66,7 +64,7 @@ Math.min(width/15, 64)
     context.clearRect(0, 0, width, height);
 
     if (!Bool.fromVec2sAreEqual(input.mouse, prevMousePos)) {
-      hoverIndex2D = Vec2.mulByNumber(input.mouse, 1/(gridSize*2)).map(Math.floor);
+      hoverIndex2D = Vec2.mulByNumber(input.mouse, 1/(gridSize)).map(Math.floor);
     }
     prevMousePos = input.mouse;
 
