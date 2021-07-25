@@ -2,3 +2,5 @@
 - url should be updated to the hash when scrolling
 - there should be a function which tells you the current slide and how scrolled it is so that
     per-slide programmatic animations can be done.
+
+- url updating with hash is a bit annoying: You may not want to go to a specific slide.

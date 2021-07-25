@@ -4,7 +4,15 @@
 <link rel="stylesheet" type="text/css" href="./inspector.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <script src='https://unpkg.com/panzoom@9.4.0/dist/panzoom.min.js'></script>
+<!-- I made this page in a day. It is messy! Very messy!! -->
 <body>
+    <div style="position: fixed; bottom: 2vh; right: 2vh; z-index: 10;">
+        <audio controls id="audio">
+            <source src="./editedPres.ogg" type="audio/ogg">
+            <source src="./editedPres.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
     <article>
         <section style="background: #FFD602; display: flex; align-items: center; justify-content: center;">
             <span style="text-align: center;">
@@ -79,7 +87,7 @@
                 <section style="display: flex;
                 align-items: center;
                 position: absolute; left: 0; top: 0;">
-                    <span style="width: min-content; padding-top: 20vh;">
+                    <span class="multislide-space">
                         <h3 style="margin: 0; width: 800px;">IBM's Hello Quantum</h3>
                         <video controls>
                             <source src="http://helloquantum.mybluemix.net/images/ContentOnly.mov" type="video/mp4">
@@ -94,7 +102,7 @@
         <section style="display: flex;
         align-items: center;
         ">
-            <span style="width: min-content; padding-top: 20vh;">
+            <span class="multislide-space">
                 <h3 style="margin: 0;">5D Chess with Multiverse Time Travel</h3>
                 <video controls >
                     <source src="https://cdn.cloudflare.steamstatic.com/steam/apps/256790570/movie480_vp9.webm?t=1594259095" type="video/webm">
@@ -106,7 +114,7 @@
 
         <section style="display: flex;
         align-items: center;">
-            <span style="width: min-content; padding-top: 20vh;">
+            <span class="multislide-space">
                 <h3 style="margin: 0;">Shapez.io</h3>
                 <video controls>
                     <source src="https://cdn.cloudflare.steamstatic.com/steam/apps/256838241/movie480_vp9.webm?t=1623328630" type="video/webm">
@@ -140,7 +148,7 @@
                     <h2>Visualizing how qubits are - prior art</h2>
                 </section>
                 <section style="display: flex; position: absolute; left: 0; top: 0;">
-                    <span style="padding-top: 20vh;">
+                    <span class="multislide-space-2" style="max-width: 60vw;">
                         <h3>Bloch Spheres</h3>
                         <ul>
                             <li>+ Elegant</li>
@@ -150,7 +158,7 @@
                         <img src="./comic.jpg" width="400">
                     </span>
                     <span>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Bloch_sphere.svg/1200px-Bloch_sphere.svg.png" height="400" style="margin-top: 20vh;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Bloch_sphere.svg/1200px-Bloch_sphere.svg.png" class="bigImage bigImage-bloch" style="margin-top: 20vh;">
                         <br>source: <a href="https://en.wikipedia.org/wiki/Bloch_sphere#/media/File:Bloch_sphere.svg">wikipedia</a> CC BY-SA 3.0
                     </span>
                 </section>
@@ -158,7 +166,7 @@
         </div>
 
         <section style="display: flex;">
-            <span style="padding-top: 20vh;">
+            <span class="multislide-space-2">
                 <h3>Probabilities</h3>
                 <ul>
                     <li>+ Actual outcome of quantum computation</li>
@@ -166,7 +174,7 @@
                     <li> - Boring</li>
                 </ul>
             </span>
-            <img src="outcomes.png" height="280" style=" margin-top: 20vh;">
+            <img src="outcomes.png" class="bigImage bigImage-probs" style=" margin-top: 20vh;">
         </section>
 
         <section>
@@ -196,13 +204,13 @@
 
         <section>
             <h2>Conventional gates + gamification</h2>
-            <p>Gates use conventional notation.</p>
-            <img src="x.png" style="height: 5vw;">
-            <img src="z.png" style="height: 5vw;">
-            <img src="h.png" style="height: 5vw;">
-            <p>But there is a source and a goal, and wires can go in any direction.</p>
-            <img src="start.png" style="height: 5vw;">
-            <img src="finish.png" style="height: 5vw;">
+            <p style="margin-bottom: 2px;">Gates use conventional notation.</p>
+            <img src="x.png" style="height: 7vh;">
+            <img src="z.png" style="height: 7vh;">
+            <img src="h.png" style="height: 7vh;">
+            <p style="margin-bottom: 2px;">But there is a source and a goal, and wires can go in any direction.</p>
+            <img src="start.png" style="height: 7vh;">
+            <img src="finish.png" style="height: 7vh;">
         </section>
 
         <section style="background: black; color: white;">
@@ -210,7 +218,7 @@
         </section>
 
         <section class="puzzle" style="padding: 0;">
-            <note>Puzzle. Collect 10: <img height="60" src="./solutionket.png"><br>
+            <note>Puzzle. Collect 10: <img src="./solutionket.png"><br>
             <a href="https://elliot.website/qubit">elliot.website/qubit</a></note>
         </section>
 
@@ -244,7 +252,7 @@
             <h2>Tetrahedron entanglement visualization</h2>
             <small><br>Click anywhere on this slide to see a 3D version.</small>
             <h3 style="margin: 0.1vh 0;">I'm focusing on 2 qubits</h3>
-            <img src="viz2.png" class="multiqubitimg" height="280" style="display: inline;">
+            <img src="viz2.png" class="multiqubitimg" style="display: inline;">
         </section>
 
         <section>
@@ -256,17 +264,18 @@
         <section style="background: black; color: white; display: flex; align-items: center; justify-content: center;">
             <span>
             <h2>Thank You for taking a look 👀</h2>
-            <a style="color: white" href="https://twitter.com/elliotokay"><img height="20" style="display: inline" src="./twitterwhite.png">@elliotokay</a>
+            <a style="color: white" href="https://twitter.com/elliotokay"><img height="20px" style="display: inline" src="./twitterwhite.png">@elliotokay</a>
         </span>
         </section>
 
         <section>
             <h2>Appendix - References & Inspiration</h2>
-            <h3 style="font-size: 1.5vw;">To the best of my understanding, use of materials from these sources is acceptable under fair-use.</li></h3>
-            <ul style="font-size: 2vw;">
+            <small>To the best of my understanding, use of materials from these sources is acceptable under fair-use.</small>
+            <ul style="font-size: 2.5vw;">
                 <li><a href="https://medium.com/qiskit/hello-quantum-2c1c00fe830c">IBM's Hello Quantum</a></li>
                 <li><a href="https://quantum-computing.ibm.com/composer/docs/iqx/visualizations">IBM's Qubit Visualizations</a></li>
                 <li><a href="https://quantum.country/qm">Quantum mechanics distilled</a></li>
+                <li><a href="https://algassert.com/post/1716">Algorithm Assertions - Visualizing 2-Qubit Entanglement</a></li>
                 <li><a href="https://shapez.io">Shapez.io</a></li>
                 <li><a href="https://www.5dchesswithmultiversetimetravel.com/">5D Chess With Multiverse Time Travel</a></li>
             </ul>
@@ -276,22 +285,18 @@
             <ul>
                 <li><a href="https://github.com/observablehq/runtime">Observable Runtime</a> ISC license</li>
                 <li><a href="https://github.com/anvaka/panzoom">Panzoom</a> MIT license</li>
-                <li><a href="https://github.com/tonsky/FiraCode">Fira Code</a><span style="font-size: 1vw;">(not distributed with this presentation)</span></li>
+                <li><a href="https://github.com/tonsky/FiraCode">Fira Code</a><span style="font-size: 1vw;">(from Google Fonts)</span></li>
             </ul>
         </section>
     </article>
-    <a href="https://elliot.website/qubit-talk" style="position: fixed; bottom: 2vh; right: 2vh; color: black;"><audio controls preload="none" id="audio">
-        <source src="./editedPres.ogg" type="audio/ogg">
-        <source src="./editedPres.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio></a>
 </body>
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;600&display=swap');
     html, body {
         margin: 0;
         overflow-y: hidden;
         line-height: 1.4;
-        font-family: "Fira code"
+        font-family: "Fira Code";
     }
 
     article {
@@ -341,7 +346,7 @@
     p {
         font-size: 3.4vw;
     }
-
+    
     note {
         position: absolute;
         bottom: 20vh;
@@ -363,6 +368,10 @@
         display: inline;
     }
 
+    .multislide-space, .multislide-space-2 {
+        padding-top: 20vh;
+    }
+
     @media only screen and (max-width: 800px) {
         h1 {
             font-size: 30px;
@@ -370,11 +379,19 @@
         h2 {
             font-size: 27px;
             font-weight: 900;
+            margin: 10px 0;
         }
         h3 {
             font-size: 24px;
             font-weight: 300;
             font-style: italic;
+            margin: 10px 0;
+        }
+        .multislide-space {
+            padding-top: 20px;
+        }
+        .multislide-space-2 {
+            padding-top: 120px;
         }
         note {
             font-size: 27px;
@@ -391,6 +408,12 @@
         .multiqubitimg {
             height: 100px;
             width: 120px;
+        }
+        .bigImage-bloch {
+            width: 25vw;
+        }
+        .bigImage-probs {
+            height: 25vw;
         }
     }
 </style>
