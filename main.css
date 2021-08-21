@@ -19,28 +19,30 @@ html, body {
     margin: 40px auto;
     max-width: 650px;
     line-height: 1.7;
-    color: #444;
     padding: 0 10px;
 }
 
-/* unvisited link */
-a:link {
-    color: #444;
+@media (prefers-color-scheme: light) {
+    body {
+        background-color: white;
+        color: #444;
+    }
+    a:link { color: #444; }
+    a:visited { color: #444; }
+    a:hover { animation: warpcolor 15s infinite; }
+    a:active { color: #444; }
 }
 
-/* visited link */
-a:visited {
-    color: #444;
-}
-
-/* mouse over link */
-a:hover {
-    color: #777;
-}
-
-/* selected link */
-a:active {
-    color: #444;
+/* dark mode */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: black;
+        color: #EEE;
+    }
+    a:link { color: #EEE; }
+    a:visited { color: #EEE; }
+    a:hover { animation: warpcolor 15s infinite; }
+    a:active { color: #EEE; }
 }
 
 h1, h2, h3 {
@@ -49,7 +51,7 @@ h1, h2, h3 {
 
 .logo {
     padding: 100px 0;
-    color: white;
+    color: white !important;
     text-shadow:
    -1px -1px 0 #000,
     1px -1px 0 #000,
@@ -61,7 +63,6 @@ h1, h2, h3 {
     clip-path: polygon(0% 0%, 55% 0%, 100% 0%, 100% 51%, 100% 100%, 54% 100%, 0% 100%, 0% 46%);
 
     animation: warp 15s infinite;
-    opacity: 0.7;
     animation-timing-function: ease-in-out;
 }
 @keyframes warp {
@@ -109,6 +110,7 @@ h1, h2, h3 {
     -1px 1px 0 #000,
      1px 1px 0 #000;
     color: white;
+    border: 2px solid white;
     padding: 8px 12px;
 }
 
@@ -203,3 +205,17 @@ h1, h2, h3 {
         transform: none;
     }
   }
+
+button {
+    border: 2px solid currentColor;
+    padding: 1rem 2rem;
+    background: transparent;
+    margin: 0;
+    color: currentColor;
+    cursor: pointer;
+    font-weight: bold;
+
+}
+button:hover {
+    animation: warpcolor 15s infinite;
+}
