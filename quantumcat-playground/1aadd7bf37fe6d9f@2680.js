@@ -9,7 +9,7 @@ export default function define(runtime, observer) {
         (circuit) => {
           const WIRE_STOP = 12;
           CircuitGrid.insert(circuit, [0, 2], Direction.UP, CircuitGrid.SOURCE, {
-            num: 2
+            num: 0
           });
           for (let i = 1; i < WIRE_STOP; i++) {
             CircuitGrid.insert(circuit, [i, 2], Direction.UP, CircuitGrid.WIRE);
@@ -37,7 +37,7 @@ export default function define(runtime, observer) {
           });
 
           CircuitGrid.insert(circuit, [0, 0], Direction.UP, CircuitGrid.SOURCE, {
-            num: 0
+            num: 2
           });
           for (let i = 1; i < WIRE_STOP; i++) {
             CircuitGrid.insert(circuit, [i, 0], Direction.UP, CircuitGrid.WIRE);
@@ -80,7 +80,7 @@ export default function define(runtime, observer) {
   main.variable(observer("plot")).define(["data"], function (data) {
     return (
       Plot.plot({
-        marks: [Plot.barY(data, { x: "outcome", y: "count" })]
+        marks: [Plot.barY(data, { x: "outcome (ABC)", y: "count" })]
       })
     )
   });
@@ -94,7 +94,7 @@ export default function define(runtime, observer) {
       })
       .then((result) =>
         Object.entries(result).map(([outcome, count]) => ({
-          outcome,
+          "outcome (ABC)": outcome,
           count
         }))
       );
@@ -142,7 +142,7 @@ export default function define(runtime, observer) {
         let prevMousePos = [0, 0];
         let hoverIndex2D = [0, 0];
         let prevHoverIndex2D = [0, 0];
-        let hoverDirection = Direction.UP;
+        let hoverDirection = Direction.LEFT;
 
         let frame;
         (function tick() {
@@ -169,12 +169,12 @@ export default function define(runtime, observer) {
             hoverIndex2D = Vec2.add(hoverIndex2D, [0, 1]);
           }
 
-          if (!Bool.fromVec2sAreEqual(prevHoverIndex2D, hoverIndex2D)) {
-            hoverDirection = Direction.betweenVec2s(prevHoverIndex2D, hoverIndex2D);
-          }
+          // if (!Bool.fromVec2sAreEqual(prevHoverIndex2D, hoverIndex2D)) {
+          //   hoverDirection = Direction.betweenVec2s(prevHoverIndex2D, hoverIndex2D);
+          // }
 
           const hoverEntry = Array2D.getEntry(circuit.grid, hoverIndex2D);
-          const hoverOverwritable = hoverEntry?.type === CircuitGrid.WIRE || hoverEntry?.type === CircuitGrid.BOX;
+          const hoverOverwritable = hoverIndex2D[0] !== 0 && hoverIndex2D[0] !== 1 && hoverIndex2D[0] !== 9 && (hoverEntry?.type === CircuitGrid.WIRE || hoverEntry?.type === CircuitGrid.BOX);
 
           if (hoverOverwritable) {
             if (input.isButtonPressed('left')) {
@@ -342,8 +342,12 @@ export default function define(runtime, observer) {
           }
 
           Draw.grid(width, height, gridSize, context);
-          Draw.cursorGridHighlight(hoverIndex2D, gridSize, context);
-          Draw.cursorGridHighlight(prevHoverIndex2D, gridSize, context);
+          if (hoverIndex2D[0] !== 0 && hoverIndex2D[0] !== 1 && hoverIndex2D[0] !== 9) {
+            Draw.cursorGridHighlight(hoverIndex2D, gridSize, context);
+            canvas.style.cursor = 'pointer';
+          } else {
+            canvas.style.cursor = 'unset';
+          }
           onLoop(circuit, width, height, context);
 
           if (!Bool.fromVec2sAreEqual(prevHoverIndex2D, hoverIndex2D)) {
@@ -668,6 +672,11 @@ export default function define(runtime, observer) {
       context.arc(...center, gridSize / 2 - 5, 0, Math.PI * 2, true); // Outer circle
       context.fill();
       context.closePath();
+      context.fillStyle = "#031C32";
+      context.font = "16px arial";
+      if (w?.data?.num === 2) context.fillText('A', center[0] - 12, center[1] - 5);
+      else if (w?.data?.num === 1) context.fillText('B', center[0] - 12, center[1] - 5);
+      else if (w?.data?.num === 0) context.fillText('C', center[0] - 12, center[1] - 5);
       //wire(w, gridSize, context);
       arrow(
         [center[0] - 10, center[1]],
@@ -877,7 +886,7 @@ export default function define(runtime, observer) {
           circuit.sourceWireFromWireNumber.delete(wire.wireNumber);
         }
         Array2D.setEntry(grid, index2D, undefined);
-        for (const direction of Direction.DIRECTIONS) {
+        for (const direction of [Direction.LEFT, Direction.RIGHT]) {
           const adjacent = Array2D.getEntry(
             grid,
             Vec2.add(index2D, Vec2.fromDirection(direction))
@@ -937,39 +946,8 @@ export default function define(runtime, observer) {
       return false;
     };
 
-    const _forceConnect = (circuit, fromWire, toWire) => {
-      let relocatedWire;
-      const alreadyConnected = toWire.adjacentWires.has(fromWire);
-      const canForceConnect = !_canConnect(
-        circuit.sourceWireFromWireNumber,
-        toWire,
-        fromWire
-      );
-      if (!alreadyConnected && canForceConnect) {
-        let toAdjacentWire;
-        if (
-          circuit.sourceWireFromWireNumber.has(toWire.wireNumber) &&
-          circuit.sourceWireFromWireNumber.has(fromWire.wireNumber) &&
-          toWire.wireNumber !== fromWire.wireNumber
-        ) {
-          toAdjacentWire =
-            toWire.fromWire || Iterable.first(toWire.adjacentWires);
-        } else {
-          toAdjacentWire = toWire.toWire || Iterable.first(toWire.adjacentWires);
-        }
-
-        if (toAdjacentWire) {
-          relocatedWire = toAdjacentWire;
-          _removeConnect(circuit, toWire, toAdjacentWire);
-          _removeConnect(circuit, toAdjacentWire, toWire);
-        }
-      }
-      _tryConnect(circuit.sourceWireFromWireNumber, fromWire, toWire);
-      return relocatedWire;
-    };
-
     const _setWire = (circuit, wire) => {
-      for (const direction of Direction.DIRECTIONS) {
+      for (const direction of [Direction.RIGHT, Direction.LEFT]) {
         const adjacentWire = Array2D.getEntry(
           circuit.grid,
           Vec2.add(wire.index2D, Vec2.fromDirection(direction))
@@ -980,39 +958,21 @@ export default function define(runtime, observer) {
 
     const insert = (circuit, index2D, facing, type = WIRE, data) => {
       const grid = circuit.grid;
-      if (Array2D.getEntry(grid, index2D)) {
-        const wire = Array2D.getEntry(grid, index2D);
 
-        const fromWire = Array2D.getEntry(
-          grid,
-          Vec2.add(index2D, Vec2.fromDirection(Direction.opposite(facing)))
-        );
-        if (fromWire) {
-          const relocatedWire1 = _forceConnect(circuit, fromWire, wire);
-          const relocatedWire2 = _forceConnect(circuit, wire, fromWire);
+      const wire = {
+        type,
+        index2D,
+        adjacentWires: new Set(),
+        toWire: null,
+        fromWire: null,
+        wireNumber: circuit.wireCounter++,
+        time: 0,
+        data
+      };
+      Array2D.setEntry(grid, index2D, wire);
 
-          _setWire(circuit, fromWire);
-          // note: the next two lines are commented because they
-          // can make relocated wires connect, which can be distracting
-          // when the user didn't explicitely ask for that to happen.
-          //if (relocatedWire1) _setWire(circuit, relocatedWire1);
-          //if (relocatedWire2) _setWire(circuit, relocatedWire2);
-        }
-      } else {
-        const wire = {
-          type,
-          index2D,
-          adjacentWires: new Set(),
-          toWire: null,
-          fromWire: null,
-          wireNumber: circuit.wireCounter++,
-          time: 0,
-          data
-        };
-        Array2D.setEntry(grid, index2D, wire);
+      _setWire(circuit, wire);
 
-        _setWire(circuit, wire);
-      }
     };
 
     return {
