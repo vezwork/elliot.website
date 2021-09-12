@@ -318,7 +318,7 @@ export default function define(runtime, observer) {
           }
 
           for (const [wireNumber, wire] of circuit.sourceWireFromWireNumber) {
-            if (wire.time % 60 === 0 && wire.adjacentWires.size > 0) {
+            if (wire.time % 170 === 0 && wire.adjacentWires.size > 0) {
               Item.make(wire, [1, 0], gridSize, circuit.items);
             }
             wire.time++;
@@ -479,11 +479,11 @@ export default function define(runtime, observer) {
       let targetPosition = _targetPosition(wire, item.wirePosition);
       if (!targetPosition) return false;
 
-      let speed = 0.04;
+      let speed = 0.035;
 
       const itemIsInCenter = item.wirePosition < 0.6 && item.wirePosition > 0.4;
       if (wire.type === CircuitGrid.BOX) {
-        speed = 0.02;
+        speed = 0.035;
         if (
           itemIsInCenter &&
           !Bool.fromVec2sAreEqual(item.lastTransformIndex, wire.index2D)
