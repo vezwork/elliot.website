@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>QuantumCat Editor Demo</title>
+<!-- <link rel="stylesheet" type="text/css" href="./inspector.css"> -->
+<style>
+    html,
+    body {
+        font-family: monospace;
+        background: #031C32;
+        color: #DDC0C6;
+        font-size: 16px;
+    }
+
+    section {
+        margin: 40px auto;
+        max-width: 650px;
+        line-height: 1.7;
+        padding: 0 10px;
+        text-align: center;
+    }
+
+    .plot {
+        display: block;
+        color: #EC4680;
+        font: 10px system-ui, sans-serif;
+        height: auto;
+        height: intrinsic;
+        max-width: 100%;
+        animation: fadeIn 1s;
+    }
+
+    @keyframes fadeIn {
+        0% {
+            background: #EC4680;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    a {
+        color: #DDC0C6 !important;
+    }
+
+    button {
+        color: #EC4680 !important;
+        border-radius: 83px;
+        border: 4px solid #EC4680;
+        background-color: #031C32;
+        font-size: 20px;
+        padding: 15px 40px;
+        font-weight: bold !important;
+        text-align: center;
+        cursor: pointer;
+        margin: 40px 40px;
+
+        transition: 0.3s background-color, 0.3s transform cubic-bezier(.28, .01, .29, 1.67);
+    }
+
+    button:hover {
+        border: 4px solid #e62468;
+        color: #e62468 !important;
+        transform: scale(1.1, 1.1);
+    }
+
+    canvas:focus,
+    canvas:active {
+        outline: none;
+    }
+
+    #playground {
+        box-sizing: border-box;
+        border: 2px solid #052440;
+        padding: 8px;
+    }
+</style>
+
+<body>
+    <section>
+        <h1>Quantum Circuit Playground <span style="font-size: small;">v0.1</span></h1>
+        <p>Click on one of the three the wires below to place an 'X' gate. Click again to change
+            the 'X' gate to a 'Z' gate. Click again to change the 'Z' gate to an 'H' gate. Click
+            again to remove the gate.
+        </p>
+        <p>
+            Press the "Run on QuantumCat" button to send your Quantum Circuit to the cloud where
+            it will be simulated 1024 times. Once the result of the simulations come back, they
+            will be plotted in the bar graph below.
+        </p>
+
+        <div id="playground"></div>
+
+        <p>This playground is a collaboration between
+            <a href="https://github.com/artificial-brain/quantumcat">quantumcat</a>,
+            an open-source quantum computing library that allows you to execute Quantum Circuits using
+            Cirq, Qiskit or Braket; and <a href="https://elliot.website">Elliot</a>.
+        </p>
+        <p>I hope this website can give you a small sense of how a Quantum Circuit runs. Thank you
+            for taking a look.
+        </p>
+    </section>
+
+    <script type="module">
+        import define from "./index.js";
+        import { Runtime, Library, Inspector } from "./runtime.js";
+
+        const runtime = new Runtime();
+        const inspect = Inspector.into(document.getElementById('playground'));
+
+        const cells = new Set(["playground", "viewof buttonClicked", "plot"]); // The cells that you want to display.
+        const main = runtime.module(define, name => cells.has(name) ? inspect() : undefined);
+
+    </script>
+</body>
