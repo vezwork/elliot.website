@@ -73,7 +73,7 @@ export default function define(runtime, observer) {
   });
   main.variable(observer("viewof buttonClicked")).define("viewof buttonClicked", ["Inputs"], function (Inputs) {
     return (
-      Inputs.button("Run on QuantumCat", {})
+      Inputs.button("Run on quantumcat", {})
     )
   });
   main.variable(observer("buttonClicked")).define("buttonClicked", ["Generators", "viewof buttonClicked"], (G, _) => G.input(_));
