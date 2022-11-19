@@ -39,7 +39,7 @@
         @media (prefers-color-scheme: dark) {
             body {
                 background-color: black;
-                color: #EEE;
+                color: #DDD;
             }
 
             a:link {
@@ -148,7 +148,7 @@
 
 <body>
     <section>
-        <a href="/">
+        <a href="./">
             <svg width="180" height="60" viewBox="0 0 55 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="55" height="13" rx="2" fill="black" />
                 <path d="M24 12L55 12" stroke="url(#paint0_radial)" stroke-width="2" />
@@ -171,59 +171,108 @@
                 </defs>
             </svg>
         </a>
-        <h1>Polytope Editor Update 1 - August 21<sup>st</sup> 2021</h1>
+        <h1>"Text-Editor-ish" UX for Domain-Specific Editing Interfaces</h1>
+        <div>Author: Elliot Evans</div>
 
-        <i style="color: #777;">This document was last edited on November 7<sup>th</sup> 2022.</i>
+        <i style="color: #777;">This document was last edited on Jan 27<sup>th</sup> 2022.</i>
 
-        <h2>Progress</h2>
-        <p>
-            In the past 10 days I've been working on four things:
+        <h2>Introduction</h2>
+
+        This article is intended for people who are interested in programming interaction UX and
+        "future-of-programming" type things. This article
         <ol>
-            <li>Planning and design for what's next,</li>
-            <li>The Math Editor,</li>
-            <li>Serialization & Deserialization of editor state,</li>
-            <li>Putting it all together to get a ~usable prototype.</li>
+            <li>suggests that there are two main "clunk factors" when using multiple domain-specifc or code
+                editors as part of a workflow;</li>
+            <li>explains the "text-editor-ish" UX perspective; and</li>
+            <li>proposes seven UX guidelines that, when applied to domain-specific editors, provides a baseline of
+                familiar and powerful controls to users familiar with text editor controls.
+            </li>
         </ol>
-        The prototype works, but the user experience is not fantastic. Almost everything could
-        be done in a better way than how it is currently done in the prototype,
-        but I'm very happy to have something working (and its already fun to play around with!).
-        Here's some things that are possible with the editor now:
 
-        <h3>Javascript function written using math notation, and evaluated</h3>
-        <img src="update1_image1.png" width="700">
-        <h3>Operator overloading in javascript</h3>
-        <img src="update1_image2.png">
-        <h3>Playing around with the editor (video)</h3>
-        <video controls>
-            <source src="update1_video1.mp4" type="video/mp4">
-            Sorry, your browser doesn't support embedded videos.
-        </video>
-        <h3>Saving and loading the editor to and from a Javascript string </h3>
-        <img src="update1_image3.png" width="400">
+        <h2>The two clunk factors</h2>
+
+        <p>People who program increasingly find themselves switching between a code editor and other domain-specific
+            editors as a part of their workflow. For example, a backend web developer may switch back-and-forth between
+            editing an architecture UML diagram and editing code; a frontend web developer may switch between editing
+            SVGs and editing code; a creative coder or game developer may switch between a custom-made world editor and
+            code editor; a biologist may switch between a spreadsheet and a code editor. This switching process can be
+            clunky for two reasons:
+        <ul>
+            <li>The controls and interface elements of domain specific editors are often quite different from the
+                controls of code editors. People who program cannot expect familiar key-combinations or button clicks to
+                achieve familiar results across all the editors they use. Learning, remembering, and switching between
+                the controls for all the different editors in use can be a significant mental load and a barrier to
+                incorporating diverse editors into a person's workflow.
+            </li>
+            <li>
+                Moving data from domain-specific editors into a code editor – or into a file in a directory related to
+                the code being edited – (and vice-versa) is, in general, far from seamless. For example, in order to use
+                an SVG from a vector graphics editor in a website, a developer will commonly open the vector graphics
+                editor, right click on the vector graphic, navigate to "copy as SVG", open their code editor, create a
+                new SVG file, open the new file in their code editor, and paste the copied SVG string into the file.
+            </li>
+        </ul>
+        </p>
+        <h2>Zooming in on the first clunk factor</h2>
+
+        <p>The Polytope project is interested in exploring how to improve the experience of people who use both code
+            editors and domain-specific editors by reducing these two "clunk factors". In this article I will talk
+            specifically about the first clunk factor: the fact that the controls and interface elements, or UX, of the
+            various editors that are a part of a person's workflow can be different and hard to switch between. If you
+            are interested in discussion about the second clunk factor, please check out an article I am preparing
+            alongside this one: "Polydirectional, nested, juxtaposed and more: Composable Editors" .
+        </p>
+        <p>First of all let me acknowledge that making editor UX seamless is not something that has a simple or
+            completely generalizable solution. Different editors have different UX for a multitude of reasons – from the
+            history of a given type of editor, to the familiarity to concepts of people who work in the domain that an
+            editor is made for, to the widely varying ergonomics and hierarchy of controls across editors.
+        </p>
+        <p>In this article I will provide a Text-Editor-first perspective: I will propose seven UX guidelines that, when
+            applied to domain-specific editors, provide a user who is familiar with Text Editor UX a baseline of
+            familiar and powerful controls regardless of the nature of the editor.
+        </p>
+        <h2>Tackling the first clunk factor:<br>Baseline guideline goals</h2>
+        <p>My goal with these baseline guidelines is
+        <ul>
+            <li>to provide a (somewhat) complete set of guidelines that can be utilized in the design of domain-specific
+                editors
+                which want to support easy-to-use and powerful controls for people who are familiar with Text Editors.
+                The
+                controls implemented based on these guidelines don't even have to be the default controls for an editor:
+                allowing the user to change their control scheme to "Text-Editor-ish" is also a viable option that
+                strictly
+                increases the accessibility of an editor;</li>
+            <li>to work towards a framework that enables building bridges from code editing to unfamiliar domains, in
+                order to
+                enable experimenting and creating using coding to be a part of learning a new domain.</li>
+            <li>to start a discussion on how to build bridges in the other direction, from familiar domains to code
+                editing, in
+                order to make coding accessible to a wider group of people. For example, someone who has some knowledge
+                in art
+                may be able to learn programming more easily if their programming interface implemented the ability to
+                draw
+                shapes and diagrams as a part of their code.</li>
+            <li>to work towards an ecosystem of interoperable editors of all different kinds.</li>
+        </ul>
         </p>
 
-        <h2>Next steps</h2>
-        <p>
-            There's a lot of polytope features that I have notes on and am excited about, but
-            the two features with the highest priority right now are:
-        <ol>
-            <li>making the editing experience as nice as a text editor, but nicer looking, and</li>
-            <li>making a <a href="https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)">graph</a> editor.</li>
-        </ol>
-        Both these features are important because they will force me to really solidify the
-        underlying Polytope framework so that I (and others) can easily build on-top of it
-        in the future. If you want to see more-or-less everything that is in progress for Polytyope, visit
-        the
-        <a href="https://www.notion.so/425001c993f749d0ad17a43e6a5990de?v=619091d55daf4f1daf6466eb6657b890">
-            Polytope WIP Notion board.
-        </a>
+        <p>Now, onto the proposed guidelines of "Text-Editor-ish" UX. Each point includes an illustration, an
+            explanation, and an argument for why it is a fundamental part of "Text-Editor-ish" UX.
         </p>
 
-        <p>
-            If you're interested in Polytope development, you can follow me and message me on
-            twitter here: <a href="https://twitter.com/elliotokay">@elliotokay</a>. Thanks
-            for taking a look at Update 1!
-        </p>
+        <h2>"Text-Editor-ish" UX Guidelines</h2>
+
+        <h3>1. Support Keyboard & mouse navigation with a caret</h3>
+        <h3>2. Support selections</h3>
+        <h3>3. Support copy, cut, and paste</h3>
+        <h3>4. Support history</h3>
+        <h3>5. Use normal input and output formats</h3>
+        <h3>6. Support multiplayer</h3>
+        <h3>7. Display editor state</h3>
+
+        <h2>Conclusion</h2>
+        <p>Are these complete? Are they the most fundamental guidelines? Are they correct?</p>
+        <p>How these will be applied in Polytope.</p>
 
     </section>
 </body>
