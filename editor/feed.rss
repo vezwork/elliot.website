@@ -5,6 +5,13 @@
         <link>https://elliot.website/editor/</link>
         <description>Polytope experimental code editing research updates</description>
         <item>
+            <title>Towards "Text-Editor-ish" UX</title>
+            <link>https://elliot.website/editor/update3.html</link>
+            <guid>https://elliot.website/editor/update3.html</guid>
+            <pubDate>Wed, 15 Feb 2023 12:00:00 EST</pubDate>
+            <description>Guidelines for making an editor usable for someone who is familiar with using a text editor.</description>
+        </item>
+        <item>
             <title>Open-sourced Polytope Experiment 1 on Github</title>
             <link>https://github.com/vezwork/Polytope</link>
             <guid>https://github.com/vezwork/Polytope</guid>
