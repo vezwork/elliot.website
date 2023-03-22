@@ -1,0 +1,9 @@
+Attribution:
+    Underwater shop music: remixed using audacityteam.org from
+        https://freesound.org/people/infobandit/sounds/28693/ "sonar.wav" CC BY 4.0, 
+        and https://freesound.org/people/Kinoton/sounds/393819/ "Underwater Ambience" CC 0
+    font:
+        https://www.dafont.com/8bit-wonder.font freeware by Joiro Hatgaya
+    sound effects:
+        generated using https://sfxr.me/
+    still trying to find the attribution for the main gameplay music...
