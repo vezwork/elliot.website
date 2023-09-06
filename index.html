@@ -17,8 +17,8 @@
         <div class="vertical-scroll-wrap">
             <content class="vertical-scroll-wrap__inner">
                 <main class="main-text">
-                    <h1 class="logo warpColor">Elliot.Website</h1>
-                    <h2 class="header warpColor">ABOUT</h2>
+                    <h1 class="logo">Elliot.Website</h1>
+                    <h2 class="header">ABOUT</h2>
                     <p>
                         Hi, I'm Elliot. I'm currently into mixing text and visual programming. Keep scrolling to see some of my previous work on the web.
                     </p>
@@ -27,7 +27,7 @@
                     </p>
                     
 
-                    <h2 class="header warpColor">WORKS</h2>
+                    <h2 class="header">WORKS</h2>
                 </main>
                 <div class="horizontal-scroll-wrap">
                     <div class="project-section">
@@ -326,8 +326,7 @@
                 const lch = `lch(90% 90.0 ${t.toFixed(2)})`
                 ctx.fillStyle = lch
                 ctx.fillRect(250+(Math.sin(t/10))*100 +Math.cos(t)*10,250+(Math.cos(t/10)+1)*100+Math.sin(t)*10,1,1)
-                for (const el of document.getElementsByClassName('warpColor')) 
-                    el.style.setProperty('--warpColor', lch);
+                document.documentElement.style.setProperty('--warpColor', lch);
                 t+=0.05;
             }
         </script>
