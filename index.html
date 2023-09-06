@@ -17,17 +17,17 @@
         <div class="vertical-scroll-wrap">
             <content class="vertical-scroll-wrap__inner">
                 <main class="main-text">
-                    <h1 class="logo">Elliot.Website</h1>
-                    <h2 class="header">ABOUT</h2>
+                    <h1 class="logo warpColor">Elliot.Website</h1>
+                    <h2 class="header warpColor">ABOUT</h2>
                     <p>
-                        Hi, I'm Elliot. I'm currently really into combining text and visual programming. Keep scrolling to see some of my previous work on the web.
+                        Hi, I'm Elliot. I'm currently into mixing text and visual programming. Keep scrolling to see some of my previous work on the web.
                     </p>
                     <p>
                         Please feel free to contact me by sending an e-letter to vez at duck dot com, or on <a href="https://www.linkedin.com/in/elliot-evans/" target="_blank">linkedin</a>.
                     </p>
                     
 
-                    <h2 class="header">WORKS</h2>
+                    <h2 class="header warpColor">WORKS</h2>
                 </main>
                 <div class="horizontal-scroll-wrap">
                     <div class="project-section">
@@ -313,6 +313,22 @@
                     const scrollPos = totalOffsetTop - PADDING;
                     window.scrollTo(0,scrollPos);
                 }
+            }
+        </script>
+        <canvas id="canvas" height="500" width="500" style="position:absolute; top: 0; left: 0; z-index: -100;"></canvas>
+        <script>
+            const canv = document.getElementById('canvas')
+            const ctx = canv.getContext('2d')
+            let t = 55;
+            requestAnimationFrame(animateWarpColor)
+            function animateWarpColor() {
+                requestAnimationFrame(animateWarpColor)
+                const lch = `lch(90% 90.0 ${t.toFixed(2)})`
+                ctx.fillStyle = lch
+                ctx.fillRect(250+(Math.sin(t/10))*100 +Math.cos(t)*10,250+(Math.cos(t/10)+1)*100+Math.sin(t)*10,1,1)
+                for (const el of document.getElementsByClassName('warpColor')) 
+                    el.style.setProperty('--warpColor', lch);
+                t+=0.05;
             }
         </script>
     </body>

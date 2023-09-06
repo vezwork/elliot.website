@@ -35,7 +35,7 @@ body {
     color: #444;
   }
   a:hover {
-    animation: warpcolor 15s infinite;
+    color: var(--warpColor);
   }
   a:active {
     color: #444;
@@ -55,7 +55,7 @@ body {
     color: #eee;
   }
   a:hover {
-    animation: warpcolor 15s infinite;
+    color: var(--warpColor);
   }
   a:active {
     color: #eee;
@@ -75,7 +75,7 @@ h3 {
     1px 1px 0 #000;
   text-align: center;
 
-  background-color: #921aff;
+  background-color: lch(43.06% 115.59 309.49);
   clip-path: polygon(
     0% 0%,
     55% 0%,
@@ -87,12 +87,12 @@ h3 {
     0% 46%
   );
 
+  background-color: var(--warpColor);
   animation: warp 15s infinite;
   animation-timing-function: ease-in-out;
 }
 @keyframes warp {
   0% {
-    background-color: #921aff;
   }
   25% {
     clip-path: polygon(
@@ -105,7 +105,6 @@ h3 {
       31% 71%,
       16% 56%
     );
-    background-color: #ff2d47;
   }
   50% {
     clip-path: polygon(
@@ -118,7 +117,6 @@ h3 {
       44% 87%,
       16% 67%
     );
-    background-color: #f5d349;
   }
   75% {
     clip-path: polygon(
@@ -131,27 +129,8 @@ h3 {
       54% 53%,
       48% 54%
     );
-    background-color: #34d865;
   }
   100% {
-    background-color: #921aff;
-  }
-}
-@keyframes warpcolor {
-  0% {
-    color: #921aff;
-  }
-  25% {
-    color: #ff2d47;
-  }
-  50% {
-    color: #f5d349;
-  }
-  75% {
-    color: #34d865;
-  }
-  100% {
-    color: #921aff;
   }
 }
 
@@ -166,8 +145,10 @@ h3 {
 .header {
   margin-top: 40px;
   letter-spacing: 4px;
-  animation: warpcolor 15s infinite;
+  color: var(--warpColor);
   animation-timing-function: ease-in-out;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 
 .horizontal-scroll-wrap {
@@ -184,8 +165,7 @@ h3 {
   position: relative;
   height: 90%;
   white-space: nowrap;
-  border: 2px solid black;
-  border-right: none;
+  border-right: 2px dashed lightblue;
 }
 
 .project-section a:link {
@@ -269,5 +249,5 @@ button {
   font-weight: bold;
 }
 button:hover {
-  animation: warpcolor 15s infinite;
+  color: var(--warpColor);
 }
