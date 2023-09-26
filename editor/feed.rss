@@ -5,6 +5,13 @@
         <link>https://elliot.website/editor/</link>
         <description>Polytope experimental code editing research updates</description>
         <item>
+            <title>Caretope is on GitHub</title>
+            <link>https://github.com/vezwork/polylab/tree/main/src/demo/caretope</link>
+            <guid>https://github.com/vezwork/polylab/tree/main/src/demo/caretope</guid>
+            <pubDate>Tue, 19 Sep 2023 12:00:00 EST</pubDate>
+            <description>Caretope is a TypeScript/JavaScript library for working with spatial caret navigation.</description>
+        </item>
+        <item>
             <title>"A Caret for Your Thoughts" is now on Youtube!</title>
             <link>https://www.youtube.com/watch?v=r--d5XlUyT4</link>
             <guid>https://www.youtube.com/watch?v=r--d5XlUyT4</guid>
