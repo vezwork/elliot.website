@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="theme-color" content="#8EDAC3" />
+    <!-- <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32"> -->
+    <!-- <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16"> -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <title>Polytope editor</title>
+    <meta name="description" content="Polytope editor" />
+    <style>
+      /* Light mode */
+      @media (prefers-color-scheme: light) {
+        body {
+          background-color: #eee9e3;
+          color: #222;
+        }
+
+        a:link {
+          color: #017bff;
+        }
+
+        a:visited {
+          color: #017bff;
+        }
+
+        a:hover {
+          color: #3597ff;
+        }
+
+        a:active {
+          color: #017bff;
+        }
+        .inv-white {
+          fill: white;
+        }
+        .inv-white-s {
+          stroke: white;
+        }
+      }
+
+      /* dark mode */
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #141902;
+          color: #f2dfd1;
+        }
+
+        a:link {
+          color: #8edac3;
+        }
+
+        a:visited {
+          color: #8edac3;
+        }
+
+        a:hover {
+          color: #4ad3aa;
+        }
+
+        a:active {
+          color: #8edac3;
+        }
+        .inv-white {
+          fill: black;
+        }
+        .inv-white-s {
+          stroke: black;
+        }
+      }
+
+      section {
+        box-sizing: border-box;
+        margin: 0 auto;
+        width: 800px;
+        max-width: 100%;
+        padding: 20px 20px;
+        font-family: "Fira Code", "Courier New", Courier, monospace;
+        line-height: 1.6;
+      }
+
+      .logo-color-stop-1 {
+        stop-color: #fb7800;
+        fill: #fb7800;
+      }
+
+      .logo-color-stop-2 {
+        stop-color: #fb7800;
+        fill: #fb7800;
+      }
+
+      .logo-color-stop-3 {
+        stop-color: #fb7800;
+        fill: #fb7800;
+      }
+
+      .logo-color-stop-4 {
+        stop-color: #fb7800;
+        fill: #fb7800;
+      }
+
+      .logo-rect {
+        stop-color: #fb7800;
+        fill: #fb7800;
+      }
+
+      .logo-stroke {
+        stop-color: #fb7800;
+        fill: #fb7800;
+      }
+
+      img,
+      video {
+        max-width: 100%;
+      }
+
+      svg {
+        display: block;
+        margin-top: 40px;
+        max-width: 90vw;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section>
+      <a href="./">
+        <svg
+          width="180"
+          height="60"
+          viewBox="0 0 55 19"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="55" height="13" rx="2" fill="black" />
+          <path
+            d="M24 12L55 12"
+            stroke="url(#paint0_radial)"
+            stroke-width="2"
+          />
+          <path
+            d="M0 12H2.5"
+            stroke="#fb7800"
+            stroke-width="2"
+            class="logo-stroke"
+          />
+          <rect
+            y="11"
+            width="30"
+            height="8"
+            rx="2"
+            fill="#5765E0"
+            class="logo-rect"
+          />
+          <path
+            d="M3.484 14.305H5.276V14.802H3.484V16.51H5.682V17H2.882V12.177H5.619L5.549 12.681H3.484V14.305ZM9.69727 11.827V17H9.17927L9.12327 16.517C8.98793 16.7037 8.8316 16.8437 8.65427 16.937C8.47693 17.0303 8.2856 17.077 8.08027 17.077C7.6136 17.077 7.26127 16.9067 7.02327 16.566C6.78993 16.2253 6.67327 15.7563 6.67327 15.159C6.67327 14.7903 6.7316 14.4613 6.84827 14.172C6.96493 13.878 7.1306 13.6493 7.34527 13.486C7.5646 13.318 7.82127 13.234 8.11527 13.234C8.52127 13.234 8.8526 13.381 9.10927 13.675V11.757L9.69727 11.827ZM8.26927 13.71C7.96127 13.71 7.72327 13.8313 7.55527 14.074C7.39193 14.3167 7.31027 14.6783 7.31027 15.159C7.31027 15.635 7.38493 15.9967 7.53427 16.244C7.68827 16.4867 7.90993 16.608 8.19927 16.608C8.54927 16.608 8.8526 16.412 9.10927 16.02V14.186C9.0066 14.032 8.88293 13.9153 8.73827 13.836C8.5936 13.752 8.43727 13.71 8.26927 13.71ZM12.4945 11.589C12.6252 11.589 12.7302 11.6287 12.8095 11.708C12.8889 11.7827 12.9285 11.8807 12.9285 12.002C12.9285 12.1233 12.8889 12.2237 12.8095 12.303C12.7302 12.3777 12.6252 12.415 12.4945 12.415C12.3685 12.415 12.2659 12.3777 12.1865 12.303C12.1119 12.2237 12.0745 12.1233 12.0745 12.002C12.0745 11.8807 12.1119 11.7827 12.1865 11.708C12.2659 11.6287 12.3685 11.589 12.4945 11.589ZM12.9635 16.531H13.9995V17H11.2415V16.531H12.3755V13.78H11.2765V13.311H12.9635V16.531ZM18.2248 16.811C18.0988 16.895 17.9448 16.9603 17.7628 17.007C17.5855 17.0537 17.4081 17.077 17.2308 17.077C16.8435 17.077 16.5401 16.9767 16.3208 16.776C16.1015 16.5707 15.9918 16.3023 15.9918 15.971V13.773H15.1448V13.311H15.9918V12.478L16.5798 12.408V13.311H17.8608L17.7838 13.773H16.5798V15.964C16.5798 16.174 16.6358 16.3303 16.7478 16.433C16.8598 16.5357 17.0395 16.587 17.2868 16.587C17.5388 16.587 17.7745 16.5287 17.9938 16.412L18.2248 16.811ZM20.8961 13.234C21.4047 13.234 21.7944 13.4067 22.0651 13.752C22.3404 14.0927 22.4781 14.5593 22.4781 15.152C22.4781 15.7307 22.3381 16.1973 22.0581 16.552C21.7827 16.902 21.3931 17.077 20.8891 17.077C20.3804 17.077 19.9884 16.9067 19.7131 16.566C19.4377 16.2207 19.3001 15.7517 19.3001 15.159C19.3001 14.5757 19.4377 14.109 19.7131 13.759C19.9931 13.409 20.3874 13.234 20.8961 13.234ZM20.8961 13.717C20.5741 13.717 20.3337 13.836 20.1751 14.074C20.0164 14.312 19.9371 14.6737 19.9371 15.159C19.9371 15.6443 20.0141 16.006 20.1681 16.244C20.3267 16.4773 20.5671 16.594 20.8891 16.594C21.2111 16.594 21.4491 16.4773 21.6031 16.244C21.7617 16.006 21.8411 15.642 21.8411 15.152C21.8411 14.6667 21.7617 14.3073 21.6031 14.074C21.4491 13.836 21.2134 13.717 20.8961 13.717ZM26.1783 13.234C26.3277 13.234 26.5003 13.2597 26.6963 13.311L26.6123 14.564H26.1363V13.773H26.1013C25.532 13.773 25.1283 14.179 24.8903 14.991V16.545H25.6393V17H23.7213V16.545H24.3023V13.766H23.7213V13.311H24.7433L24.8553 14.186C25.0047 13.8687 25.182 13.6307 25.3873 13.472C25.5973 13.3133 25.861 13.234 26.1783 13.234Z"
+            fill="white"
+          />
+          <path
+            d="M12.4049 4.264C12.4049 4.888 12.2075 5.36 11.8129 5.68C11.4235 5.99467 10.8902 6.152 10.2129 6.152H9.60488V8H8.29288V2.456H10.0369C10.8049 2.456 11.3915 2.608 11.7969 2.912C12.2022 3.21067 12.4049 3.66133 12.4049 4.264ZM11.0609 4.264C11.0609 3.68267 10.7275 3.392 10.0609 3.392H9.60488V5.208H10.1249C10.4235 5.208 10.6529 5.13067 10.8129 4.976C10.9782 4.82133 11.0609 4.584 11.0609 4.264ZM14.9938 3.608C15.6391 3.608 16.1431 3.81333 16.5058 4.224C16.8738 4.62933 17.0578 5.176 17.0578 5.864C17.0578 6.57867 16.8764 7.136 16.5138 7.536C16.1511 7.936 15.6444 8.136 14.9938 8.136C14.3431 8.136 13.8364 7.93867 13.4738 7.544C13.1111 7.144 12.9298 6.58667 12.9298 5.872C12.9298 5.41867 13.0098 5.024 13.1698 4.688C13.3351 4.34667 13.5724 4.08267 13.8818 3.896C14.1964 3.704 14.5671 3.608 14.9938 3.608ZM14.9938 4.544C14.7324 4.544 14.5404 4.65067 14.4178 4.864C14.2951 5.072 14.2338 5.408 14.2338 5.872C14.2338 6.34133 14.2951 6.68267 14.4178 6.896C14.5404 7.104 14.7324 7.208 14.9938 7.208C15.2551 7.208 15.4471 7.10133 15.5698 6.888C15.6924 6.67467 15.7538 6.33333 15.7538 5.864C15.7538 5.40533 15.6924 5.072 15.5698 4.864C15.4471 4.65067 15.2551 4.544 14.9938 4.544ZM20.1666 6.664C20.1666 6.97867 20.348 7.136 20.7106 7.136C20.908 7.136 21.1106 7.09333 21.3186 7.008L21.6146 7.856C21.2733 8.04267 20.8653 8.136 20.3906 8.136C19.8946 8.136 19.5213 7.99467 19.2706 7.712C19.0253 7.424 18.9026 7.02133 18.9026 6.504V2.928H17.6546V2.064H20.1666V6.664ZM25.3475 8C25.1555 8.57067 24.8702 9 24.4915 9.288C24.1128 9.58133 23.6062 9.74667 22.9715 9.784L22.8275 8.888C23.2328 8.83467 23.5315 8.744 23.7235 8.616C23.9208 8.488 24.0782 8.28267 24.1955 8H23.7555L22.4115 3.752H23.7475L24.5715 7.192L25.4675 3.752H26.7635L25.3475 8ZM31.3684 7.752C30.9684 8.008 30.5044 8.136 29.9764 8.136C29.4324 8.136 29.0217 7.99733 28.7444 7.72C28.4724 7.44267 28.3364 7.05333 28.3364 6.552V4.624H27.4484V3.752H28.3364V2.832L29.6004 2.68V3.752H30.9684L30.8404 4.624H29.6004V6.552C29.6004 6.76 29.6484 6.90933 29.7444 7C29.8404 7.09067 29.995 7.136 30.2084 7.136C30.475 7.136 30.723 7.072 30.9524 6.944L31.3684 7.752ZM34.1813 3.608C34.8266 3.608 35.3306 3.81333 35.6933 4.224C36.0613 4.62933 36.2453 5.176 36.2453 5.864C36.2453 6.57867 36.0639 7.136 35.7013 7.536C35.3386 7.936 34.8319 8.136 34.1813 8.136C33.5306 8.136 33.0239 7.93867 32.6613 7.544C32.2986 7.144 32.1173 6.58667 32.1173 5.872C32.1173 5.41867 32.1973 5.024 32.3573 4.688C32.5226 4.34667 32.7599 4.08267 33.0693 3.896C33.3839 3.704 33.7546 3.608 34.1813 3.608ZM34.1813 4.544C33.9199 4.544 33.7279 4.65067 33.6053 4.864C33.4826 5.072 33.4213 5.408 33.4213 5.872C33.4213 6.34133 33.4826 6.68267 33.6053 6.896C33.7279 7.104 33.9199 7.208 34.1813 7.208C34.4426 7.208 34.6346 7.10133 34.7573 6.888C34.8799 6.67467 34.9413 6.33333 34.9413 5.864C34.9413 5.40533 34.8799 5.072 34.7573 4.864C34.6346 4.65067 34.4426 4.544 34.1813 4.544ZM39.4901 3.608C40.0235 3.608 40.4155 3.80533 40.6661 4.2C40.9168 4.58933 41.0421 5.144 41.0421 5.864C41.0421 6.30133 40.9755 6.69333 40.8421 7.04C40.7141 7.38133 40.5275 7.65067 40.2821 7.848C40.0368 8.04 39.7461 8.136 39.4101 8.136C38.9995 8.136 38.6635 7.98933 38.4021 7.696V9.64L37.1381 9.776V3.752H38.2581L38.3141 4.224C38.4795 4.016 38.6635 3.86133 38.8661 3.76C39.0741 3.65867 39.2821 3.608 39.4901 3.608ZM39.0981 4.544C38.8315 4.544 38.5995 4.70933 38.4021 5.04V6.832C38.4928 6.96 38.5861 7.056 38.6821 7.12C38.7835 7.17867 38.8981 7.208 39.0261 7.208C39.2608 7.208 39.4368 7.104 39.5541 6.896C39.6768 6.68267 39.7381 6.344 39.7381 5.88C39.7381 5.37867 39.6848 5.032 39.5781 4.84C39.4715 4.64267 39.3115 4.544 39.0981 4.544ZM43.031 6.248C43.111 6.89333 43.4523 7.216 44.055 7.216C44.4177 7.216 44.7803 7.09867 45.143 6.864L45.647 7.552C45.439 7.73333 45.191 7.87733 44.903 7.984C44.615 8.08533 44.2977 8.136 43.951 8.136C43.4763 8.136 43.0737 8.04267 42.743 7.856C42.4123 7.664 42.1617 7.4 41.991 7.064C41.8257 6.72267 41.743 6.328 41.743 5.88C41.743 5.45333 41.823 5.06933 41.983 4.728C42.1483 4.38133 42.3857 4.10933 42.695 3.912C43.0097 3.70933 43.383 3.608 43.815 3.608C44.2203 3.608 44.5723 3.696 44.871 3.872C45.1697 4.04267 45.399 4.29333 45.559 4.624C45.7243 4.94933 45.807 5.33867 45.807 5.792C45.807 5.968 45.799 6.12 45.783 6.248H43.031ZM43.815 4.456C43.5857 4.456 43.4017 4.54133 43.263 4.712C43.1243 4.87733 43.0417 5.13333 43.015 5.48H44.575C44.5643 4.79733 44.311 4.456 43.815 4.456Z"
+            fill="white"
+          />
+          <defs>
+            <radialGradient
+              id="paint0_radial"
+              cx="0"
+              cy="0"
+              r="1"
+              gradientUnits="userSpaceOnUse"
+              gradientTransform="translate(29.5111 10.9998) rotate(2.30839) scale(24.8277 6622.72)"
+            >
+              <stop stop-color="#5765E0" class="logo-color-stop-1" />
+              <stop
+                offset="0.421875"
+                stop-color="#8EDAC3"
+                class="logo-color-stop-2"
+              />
+              <stop
+                offset="0.702726"
+                stop-color="#FB7800"
+                class="logo-color-stop-3"
+              />
+              <stop offset="1" stop-color="#FFCF25" class="logo-color-stop-4" />
+            </radialGradient>
+          </defs>
+        </svg>
+      </a>
+
+      <h1 style="margin-bottom: 0">
+        Spatial Caret Navigation with
+        <svg
+          style="display: inline; vertical-align: text-bottom; margin-top: 0"
+          height="36"
+          viewBox="0 0 214 62"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M14.82 45.3402C16.4 45.3402 17.87 45.0802 19.23 44.5602C20.61 44.0402 21.88 43.3802 23.04 42.5802L25.5 45.8802C24.12 47.0602 22.46 47.9902 20.52 48.6702C18.58 49.3502 16.68 49.6902 14.82 49.6902C11.68 49.6902 9 49.0202 6.78 47.6802C4.58 46.3202 2.9 44.4202 1.74 41.9802C0.58 39.5202 0 36.6402 0 33.3402C0 30.1802 0.58 27.3502 1.74 24.8502C2.92 22.3302 4.61 20.3502 6.81 18.9102C9.03 17.4702 11.72 16.7502 14.88 16.7502C16.9 16.7502 18.79 17.0602 20.55 17.6802C22.33 18.2802 23.96 19.1902 25.44 20.4102L22.98 23.7702C21.64 22.8302 20.29 22.1302 18.93 21.6702C17.59 21.1902 16.22 20.9502 14.82 20.9502C12.1 20.9502 9.86 21.9702 8.1 24.0102C6.34 26.0502 5.46 29.1602 5.46 33.3402C5.46 36.1402 5.86 38.4302 6.66 40.2102C7.48 41.9702 8.59 43.2702 9.99 44.1102C11.41 44.9302 13.02 45.3402 14.82 45.3402Z"
+            fill="#F4672B"
+          />
+          <path
+            d="M52.2366 42.1002C52.2366 43.3602 52.4466 44.2802 52.8666 44.8602C53.2866 45.4402 53.9366 45.8702 54.8166 46.1502L53.51 49.0002C52.15 48.8202 51.0366 49.0802 50.0166 48.4002C48.9966 47.7002 48.2566 46.6502 47.7966 45.2502C46.6566 46.7102 45.2366 47.8202 43.5366 48.5802C41.8366 49.3202 39.9566 49.6902 37.8966 49.6902C34.7366 49.6902 32.2466 48.8002 30.4266 47.0202C28.6066 45.2402 27.6966 42.8802 27.6966 39.9402C27.6966 36.6802 28.9666 34.1802 31.5066 32.4402C34.0466 30.7002 37.7166 29.8302 42.5166 29.8302H47.1666V27.1902C47.1666 24.9102 46.4966 23.3002 45.1566 22.3602C43.8366 21.4002 41.9966 20.9202 39.6366 20.9202C38.5966 20.9202 37.3766 21.0502 35.9766 21.3102C34.5766 21.5502 33.0566 21.9602 31.4166 22.5402L30.0966 18.7302C32.0366 18.0102 33.8566 17.5002 35.5566 17.2002C37.2566 16.9002 38.8766 16.7502 40.4166 16.7502C44.3566 16.7502 47.3066 17.6702 49.2666 19.5102C51.2466 21.3302 52.2366 23.8102 52.2366 26.9502V42.1002ZM39.1866 45.8502C40.7466 45.8502 42.2366 45.4602 43.6566 44.6802C45.0766 43.8802 46.2466 42.7802 47.1666 41.3802V33.2502H42.6066C39.1266 33.2502 36.6666 33.8502 35.2266 35.0502C33.8066 36.2502 33.0966 37.8602 33.0966 39.8802C33.0966 41.8402 33.5966 43.3302 34.5966 44.3502C35.6166 45.3502 37.1466 45.8502 39.1866 45.8502Z"
+            fill="#F4672B"
+          />
+          <path
+            d="M58.9931 49.0002V45.1302H63.9131V21.2802H58.9931V17.4102H67.7531L68.6831 24.8802C69.9031 22.2802 71.3831 20.2702 73.1231 18.8502C74.8631 17.4302 77.1631 16.7202 80.0231 16.7202C80.9031 16.7202 81.6831 16.7902 82.3631 16.9302C83.0631 17.0502 83.7731 17.2102 84.4931 17.4102L83.0231 21.9102C82.3631 21.7302 81.7631 21.6002 81.2231 21.5202C80.6831 21.4202 80.0631 21.3702 79.3631 21.3702C76.9431 21.3702 74.8631 22.2302 73.1231 23.9502C71.3831 25.6702 69.9931 28.2702 68.9531 31.7502V45.1302H75.3731V49.0002H58.9931ZM79.6331 28.0902V21.2202L80.1431 17.4102H84.4931L83.7731 28.0902H79.6331Z"
+            fill="#F4672B"
+          />
+          <path
+            d="M91.7297 34.9902C91.8297 37.4302 92.2997 39.4302 93.1397 40.9902C93.9797 42.5302 95.0897 43.6702 96.4697 44.4102C97.8497 45.1302 99.3497 45.4902 100.97 45.4902C102.59 45.4902 104.05 45.2502 105.35 44.7702C106.67 44.2902 108.02 43.5802 109.4 42.6402L111.77 45.9702C110.29 47.1302 108.6 48.0402 106.7 48.7002C104.82 49.3602 102.89 49.6902 100.91 49.6902C97.8497 49.6902 95.2397 49.0002 93.0797 47.6202C90.9197 46.2402 89.2697 44.3202 88.1297 41.8602C87.0097 39.3802 86.4497 36.5102 86.4497 33.2502C86.4497 30.0502 87.0197 27.2102 88.1597 24.7302C89.2997 22.2502 90.8997 20.3002 92.9597 18.8802C95.0197 17.4602 97.4497 16.7502 100.25 16.7502C102.91 16.7502 105.2 17.3802 107.12 18.6402C109.04 19.8802 110.51 21.6602 111.53 23.9802C112.57 26.2802 113.09 29.0302 113.09 32.2302C113.09 32.7702 113.08 33.2802 113.06 33.7602C113.04 34.2202 113.01 34.6302 112.97 34.9902H91.7297ZM100.31 20.8902C97.9697 20.8902 96.0097 21.7202 94.4297 23.3802C92.8697 25.0402 91.9797 27.6102 91.7597 31.0902H108.23C108.17 27.7102 107.43 25.1702 106.01 23.4702C104.59 21.7502 102.69 20.8902 100.31 20.8902Z"
+            fill="#F4672B"
+          />
+          <path
+            d="M100.01 3C100.01 3 111.4 3 116.383 5.23544C121.366 7.47088 121.366 12.5804 121.366 12.5804"
+            stroke="#819700"
+            stroke-width="5"
+          />
+          <path
+            d="M142.01 3C142.01 3 130.62 3 125.637 5.23544C120.654 7.47088 120.654 12.5804 120.654 12.5804"
+            stroke="#819700"
+            stroke-width="5"
+          />
+          <path
+            d="M99.81 56.5806C99.81 56.5806 111.2 56.5806 116.183 54.3451C121.166 52.1097 121.166 47.0001 121.166 47.0001"
+            stroke="#F4672B"
+            opacity="0.2"
+            stroke-width="5"
+          />
+          <path
+            d="M141.81 56.5806C141.81 56.5806 130.42 56.5806 125.437 54.3451C120.454 52.1097 120.454 47.0001 120.454 47.0001"
+            stroke="#F4672B"
+            opacity="0.2"
+            stroke-width="5"
+          />
+          <path
+            d="M120.783 50L118.51 11.7627H123.51L120.783 50Z"
+            stroke="#F4672B"
+            stroke-width="5.09091"
+            stroke-linecap="round"
+            stroke-linejoin="bevel"
+          />
+          <path
+            d="M141.56 16.75C144.54 16.75 147.03 17.43 149.03 18.79C151.05 20.13 152.56 22.03 153.56 24.49C154.58 26.95 155.09 29.85 155.09 33.19C155.09 36.41 154.57 39.26 153.53 41.74C152.49 44.22 150.96 46.17 148.94 47.59C146.94 48.99 144.46 49.69 141.5 49.69C138.54 49.69 136.05 49.01 134.03 47.65C132.01 46.29 130.48 44.38 129.44 41.92C128.42 39.44 127.91 36.55 127.91 33.25C127.91 29.99 128.43 27.12 129.47 24.64C130.51 22.16 132.04 20.23 134.06 18.85C136.1 17.45 138.6 16.75 141.56 16.75ZM141.56 20.86C138.84 20.86 136.78 21.87 135.38 23.89C134 25.89 133.31 29.01 133.31 33.25C133.31 37.41 133.99 40.5 135.35 42.52C136.73 44.54 138.78 45.55 141.5 45.55C144.22 45.55 146.26 44.54 147.62 42.52C149 40.5 149.69 37.39 149.69 33.19C149.69 28.99 149.01 25.89 147.65 23.89C146.29 21.87 144.26 20.86 141.56 20.86Z"
+            fill="#F4672B"
+          />
+          <path
+            d="M172.737 16.75C175.537 16.75 177.767 17.43 179.427 18.79C181.107 20.15 182.317 22.07 183.057 24.55C183.797 27.01 184.167 29.89 184.167 33.19C184.167 36.37 183.717 39.21 182.817 41.71C181.937 44.19 180.597 46.14 178.797 47.56C176.997 48.98 174.727 49.69 171.987 49.69C168.527 49.69 165.747 48.47 163.647 46.03V61.09L158.607 61.72V17.41H162.897L163.317 21.82C164.477 20.2 165.857 18.95 167.457 18.07C169.077 17.19 170.837 16.75 172.737 16.75ZM171.537 20.8C169.797 20.8 168.257 21.33 166.917 22.39C165.597 23.43 164.507 24.59 163.647 25.87V41.53C164.467 42.75 165.497 43.72 166.737 44.44C167.997 45.14 169.377 45.49 170.877 45.49C173.497 45.49 175.467 44.49 176.787 42.49C178.107 40.49 178.767 37.38 178.767 33.16C178.767 30.4 178.507 28.11 177.987 26.29C177.467 24.45 176.677 23.08 175.617 22.18C174.557 21.26 173.197 20.8 171.537 20.8Z"
+            fill="#F4672B"
+          />
+          <path
+            d="M191.643 34.99C191.743 37.43 192.213 39.43 193.053 40.99C193.893 42.53 195.003 43.67 196.383 44.41C197.763 45.13 199.263 45.49 200.883 45.49C202.503 45.49 203.963 45.25 205.263 44.77C206.583 44.29 207.933 43.58 209.313 42.64L211.683 45.97C210.203 47.13 208.513 48.04 206.613 48.7C204.733 49.36 202.803 49.69 200.823 49.69C197.763 49.69 195.153 49 192.993 47.62C190.833 46.24 189.183 44.32 188.043 41.86C186.923 39.38 186.363 36.51 186.363 33.25C186.363 30.05 186.933 27.21 188.073 24.73C189.213 22.25 190.813 20.3 192.873 18.88C194.933 17.46 197.363 16.75 200.163 16.75C202.823 16.75 205.113 17.38 207.033 18.64C208.953 19.88 210.423 21.66 211.443 23.98C212.483 26.28 213.003 29.03 213.003 32.23C213.003 32.77 212.993 33.28 212.973 33.76C212.953 34.22 212.923 34.63 212.883 34.99H191.643ZM200.223 20.89C197.883 20.89 195.923 21.72 194.343 23.38C192.783 25.04 191.893 27.61 191.673 31.09H208.143C208.083 27.71 207.343 25.17 205.923 23.47C204.503 21.75 202.603 20.89 200.223 20.89Z"
+            fill="#F4672B"
+          />
+        </svg>
+        - Sep 8<sup>th</sup>
+        2023
+      </h1>
+
+      <i style="color: #777">Originally published on _<sup>th</sup> 2023.</i
+      ><br />
+      <i style="color: #777">Last edited on _<sup>th</sup> 2023.</i><br /><br />
+      <img src="./caretopeMedia/line_order.svg" />
+      <p>
+        hi all this presentation is about carrots, during the presentation I'll
+        be moving this little vegetable around and you can see all my keyboard
+        inputs in the bottom left corner in other editors a carrot looks like
+        this I-beam or an underscore and a lot of the time it's blinking.
+      </p>
+      <p>
+        this presentation is also about visual editors so for context I want to
+        show you this spectrum of visual editors. Starting on the left here with
+        the tried and true versatile traditional code editor. In this editor
+        you're editing text and you're moving your code around to navigate that
+        text. Next we have a structural editor; in this editor it looks like
+        text but you're actually editing something like an AST, that can make
+        the controls feel pretty unfamiliar and unintuitive, but you can put
+        some interesting things in your code like this Matrix. Next we have this
+        code or text editor that lets you embed and create custom interactive
+        editors and put them in your code in this particular slide we have some
+        code that defines a red black tree balancing algorithm. Next we have a
+        structural editor that lets you embed and create custom interactive
+        editors into your code here you can see a Color Picker embedded in some
+        code a table and a slider embedded in some code and a plot of some
+        grades embedded in some code. These two editors beautifully blend text
+        and visual editing. Next we have scratch blocks which is actually quite
+        similar to the structural editor except that you're moving blocks around
+        and you're thinking spatially about how you're rearranging your program.
+        Finally on the right we have a representative from the wondrous and
+        underexplored region of spatial programming. In this programming
+        language you define some rules spatially and using colors and then your
+        program plays out in a spatial and color-based way so you're never
+        thinking about text or ASTs or anything like that. In this programming
+        language it's totally Visual and spatial.
+      </p>
+      <p>
+        I really love this entire Spectrum but I'm in particular interested in
+        building a bridge between text programming and visual programming.
+      </p>
+      <p>
+        so I've been working on a side project which is a hybrid text visual
+        editor called polytope but in polytope we can't navigate visual editors
+        without using our Mouse and I'll show you what I mean. I've switched
+        over to polytope here and I have a graph editor in my code and a music
+        editor and let's try to edit one of the nodes in My Graph editor using
+        just my keyboard I'll press right a few times on my keyboard oh I'm on
+        the other side of the graph I'll press left a few times and I'm on the
+        other side of the graph again there's no way for me to get into the
+        nodes of the graph and edit them so I have to move my mouse click on one
+        of them and use my keyboard and then click outside and down here we have
+        a slightly more robust example of a music notation editor where I can
+        navigate in and out of it but there's some weird things like if I press
+        up or down I just stay in the editor where I might expect to go to the
+        line below or the line above outside of the editor and likewise if I go
+        down here and then press up I just go to after the music editor or
+        before the music editor and this is because right now my navigation is
+        implemented in an index-based way What should visual caret nav be? so I
+        know in polytope I want to have carrot navigation for all my editors but
+        what could visual carrot navigation be first of all it could feel text
+        editory which means that it should strongly utilize the intuition users
+        have coming from a text editor and it should be an actual extension of
+        text editor controls if we come up with a scheme for visual current
+        navigation and we apply it to text then we should get back normal text
+        editor controls and if we apply it to visual editors it should feel
+        intuitive and like an extension of text editor controls it should also
+        be automatic so it should work for any visual editor so users can create
+        editors without thinking about carrot navigation in other words the
+        current navigation should be based on visual properties and it should be
+        independent of the data model of the user's editors this is important
+        for accessibility so that we can guarantee that all editors have carrot
+        navigation finally it should be composable which means that controls
+        should be seamless and identical in between and in and out of diverse
+        editors navigating around a document full of diverse editors should just
+        feel like you're using one control scheme and you shouldn't feel
+        boundaries between editors where you have to think about switching
+        control schemes so the idea behind all of this is to unite visual
+        programming and text programming with some common controls Prior art
+        with all this in mind I looked all around for a carrot navigation
+        algorithm but upon research none of them had what I wanted for polytope
+        here's what I looked at and researched while working on this a solution
+        to this problem in Polito I looked at the w3c spatial navigation spec
+        for web browsers you can use this in your web browser if you enable a
+        flag and it allows you to navigate navigate around web pages using
+        keyboard controls that feel spatial and intuitive I looked at an awesome
+        stack Overflow thread called four-way navigation algorithm there's a
+        great GitHub repo called spatial keyboard navigation Netflix has a blog
+        post on four-way carrot navigation because on a TV users just have
+        access to a remote with four directional controls there so Netflix wants
+        to make their uis work automatically on TVs and I also looked at Rich
+        Text editors but the problem with these is that they're closed source so
+        I don't know what they're doing and it's also unclear if their methods
+        can be applied to arbitrary user created editors or if they just work
+        for the editors or the components that are available in these rich text
+        editors What makes text editors so... text editor-y? what makes text
+        editors so text editory I want to answer this question from a spatial
+        and visual perspective so that I can apply my answer to visual and
+        spatial editors to consider this let's look at this example code snippet
+        down here I can navigate this code snippet just like a normal text
+        editor and firstly this text has a predefined set of places where the
+        carrot can go which I call carrot sinks and I visualize it here and
+        these carrot sinks are purely spatial data that each of them are an x
+        and y coordinate of the top of the carrot sink and then length of how
+        far the carrot sync extends down or you can use a different
+        representation like an x and y coordinate of the top of the carrot sync
+        and an x and y coordinate at the bottom of the card sink but the idea is
+        just that it's spatial data now that we're thinking in terms of carrot
+        sinks here's the main idea in a text editor carrot sinks are partitioned
+        into lines these lines are vertically ordered from top to bottom and
+        inside each line carrot sinks are ordered strictly from left to right
+        we've partitioned carrot sinks into lines it's easy to define the
+        actions of the four arrow keys on the carrot pressing left goes to the
+        previous carat sink in the current line unless you're at the beginning
+        of a line or the first carrot sink in a line then you go to the last
+        carrot Sink of the previous line pressing right goes to the next carrot
+        sink in the line or if you're at the end of the line it goes to the
+        first carrot sync in the next line pressing up goes to the closest
+        carrot sink in the line above to Define it spatially instead of in a
+        column based way and pressing down goes to the closest carrot sync in
+        the line below and we can see how that works for differently sized lines
+        the main idea is that carrot sinks are partitioned into lines these
+        lines are vertically ordered and with carrot sinks partitioned into
+        vertically ordered lines it's easy to define the actions of the arrow
+        keys this idea is what differentiates this work from the prior art and
+        we can use this idea to extend text editor carrot navigation to visual
+        editors Sketch of how to partition caret sinks into lines I'll briefly
+        describe a way to put partition carrot sinks into lines start by putting
+        every carrot sink in a line by itself then until you can't anymore
+        repeat finding the two closest lines that don't vertically overlap and
+        merge those two lines as long as merging doesn't cause that line the new
+        merge line to intersect with any of the existing lines note that your
+        choice of distance function matters if you want horizontal lines you
+        should choose a distance function that is biased towards things that are
+        horizontally close visual caret nav demo now I'll just go through some
+        extra examples and then I'll show off something extra you can add to
+        this idea so here's some visual editors with their carrot sinks and we
+        can group these into lines in the same way and with that we can use the
+        method I guess described Tad current navigation I just navigate around a
+        bit Nested caret sinks demo now you might notice something a bit strange
+        that you can navigate it over here what's after the S is the N equals
+        one line and pressing up here goes to n equals one where you might
+        expect it to go directly to here and that's because the N equals one is
+        on a line on its own now I'll show off a way you can group together card
+        sinks so you don't get these straight lines that seem to be part of this
+        submission notation or this diagram so you can group together card sinks
+        that should be grouped with other characters and that's the idea of
+        nested carrot sinks the idea of nested cart sinks is that lines are made
+        up of carrot sinks or carrot sinks containing other carrot sinks and if
+        you navigate to a carrot sink that contains other carrot sinks then it
+        delegates to the carrot sinks inside of it here I can navigate within
+        the summation notation with line wrapping now and if I go to this line
+        and I press down it doesn't go to n equals one it goes to this what
+        feels like the next line and it's important to note that although the
+        representation is nested and hierarchical if we turn off the
+        visualization to the user it shouldn't feel hierarchical it should just
+        feel like you're navigating to the intuitively right place based off the
+        direction you're you're pressing Rewind and thank you thanks for
+        watching I hope to make some more information and maybe some code about
+        this carrot stuff available at some point so you can follow along at
+        elliot.website slash editor
+      </p>
+    </section>
+  </body>
+</html>
