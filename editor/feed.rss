@@ -5,6 +5,14 @@
         <link>https://elliot.website/editor/</link>
         <description>Polytope experimental code editing research updates</description>
         <item>
+            <title>Polytope cited in Reclaiming the Unexplored in Hybrid Visual
+Programming by Michael Homer</title>
+            <link>https://michael.homer.nz/Publications/Onward2024/ReclaimingUnexplored-Homer2024.pdf</link>
+            <guid>https://michael.homer.nz/Publications/Onward2024/ReclaimingUnexplored-Homer2024.pdf</guid>
+            <pubDate>Thu, 8 Oct 2026 12:00:00 EST</pubDate>
+            <description></description>
+        </item>
+        <item>
             <title>Caretope is on GitHub</title>
             <link>https://github.com/vezwork/polylab/tree/main/src/demo/caretope</link>
             <guid>https://github.com/vezwork/polylab/tree/main/src/demo/caretope</guid>
